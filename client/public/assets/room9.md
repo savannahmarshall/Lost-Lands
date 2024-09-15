@@ -1,0 +1,1 @@
+And the brave adventurers came to the final day of their journey, older, wiser, sore up to the knees. It all seemed so quick, as though the gods had yet to write the many chapters which should have lain in wait. They could only turn about and prepare once more. Hopefully, the gods could get it together, one last time.

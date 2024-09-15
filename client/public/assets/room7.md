@@ -1,0 +1,1 @@
+Thus begins the journey of our brave travelers, into the fairy wood and mushroom glens, over the mountains and across the great river, to the lair of the Beast, where treasure sparkles in the deep. Good luck, and good fortunes.

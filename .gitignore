@@ -82,9 +82,7 @@ coverage/
 # Nuxt.js build output
 .nuxt/
 
-# Gatsby files
-.cache/
-public/
+
 
 # Gridsome build output
 .gridsome/

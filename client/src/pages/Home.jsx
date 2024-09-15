@@ -1,43 +1,57 @@
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
+// client/src/pages/Home.jsx
+import { useState, useEffect } from 'react';
+import Navbar from '../Navbar';
+import MatchupImage from './MatchupImage';
+import MatchupText from './MatchupText';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_MATCHUPS, {
-    fetchPolicy: "no-cache"
-  });
+  const [currentImage, setCurrentImage] = useState('startup.png');
+  const [currentText, setCurrentText] = useState('');
+  const [isStartup, setIsStartup] = useState(true);
 
-  const matchupList = data?.matchups || [];
+  useEffect(() => {
+    const fetchStartupText = async () => {
+      try {
+        const response = await fetch('/assets/startup.md');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const text = await response.text();
+        setCurrentText(text);
+      } catch (error) {
+        console.error('Failed to fetch startup text:', error);
+        setCurrentText('Failed to load startup text content.');
+      }
+    };
+
+    fetchStartupText();
+  }, []);
+
+  const handleImageChange = (imageName, textFile) => {
+    setCurrentImage(imageName);
+    setIsStartup(false);
+    // Fetch the text content for the selected room
+    // ...
+  };
 
   return (
-    <div className="card bg-white card-rounded w-50">
-      <div className="card-header bg-dark text-center">
-        <h1>Welcome to Tech Matchup!</h1>
+    <div className="container">
+      <Navbar setImage={handleImageChange} setText={setCurrentText} />
+      <div className="content">
+        <div className="matchup-container">
+          <div className="matchup-image">
+            <MatchupImage src={`/assets/${currentImage}`} alt="Matchup Image" />
+          </div>
+          <div className="matchup-text">
+            <MatchupText text={currentText} isStartup={isStartup} />
+          </div>
+        </div>
       </div>
-      <div className="card-body m-5">
-        <h2>Here is a list of matchups you can vote on:</h2>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <ul className="square">
-            {matchupList.map((matchup) => {
-              return (
-                <li key={matchup._id}>
-                  <Link to={{ pathname: `/matchup/${matchup._id}` }}>
-                    {matchup.tech1} vs. {matchup.tech2}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-      <div className="card-footer text-center m-3">
-        <h2>Ready to create a new matchup?</h2>
-        <Link to="/matchup">
-          <button className="btn btn-lg btn-danger">Create Matchup!</button>
-        </Link>
-      </div>
+      <footer className="footer">
+        <button className="footer-button">Option 1</button>
+        <button className="footer-button">Option 2</button>
+        <button className="footer-button">Option 3</button>
+      </footer>
     </div>
   );
 };

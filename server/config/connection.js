@@ -1,7 +1,10 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 
-//MongoDB URI for Mongo atlas, use this to test locally: 'mongodb://localhost:27017/your-database')
-const mongoURI = 'mongodb+srv://savvymarshall:duckies43@project3cluster.h5vfp.mongodb.net/?retryWrites=true&w=majority&appName=project3cluster';
+// Use MongoDB URI from environment variable or fallback to local MongoDB if not found
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/loginDB';
+
+console.log('MongoDB URI being used:', mongoURI);
 
 const connectDB = async () => {
   try {
@@ -9,9 +12,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('MongoDB connected');
+    console.log('MongoDB connected to', mongoURI);
   } catch (err) {
-    console.error(err.message);
+    console.error('MongoDB connection error:', err.message);
     process.exit(1);
   }
 };

@@ -28,20 +28,11 @@ const Home = () => {
   const [currentImage, setCurrentImage] = useState('startup.png');
   const [currentText, setCurrentText] = useState('');
   const [isStartup, setIsStartup] = useState(true);
-  const [activeRoom, setActiveRoom] = useState(null);
-  const [currentRoom, setCurrentRoom] = useState(1); // Default to room 1
+  const [currentRoom, setCurrentRoom] = useState(1);
+  const [showRoomModal, setShowRoomModal] = useState(false);
 
-  // Open the modal for the current room
-  const handleOpenRoom = () => {
-    console.log(`Challenge button clicked. Current Room: ${currentRoom}`);
-    setActiveRoom(currentRoom);
-  };
-
-  // Close the modal
-  const handleCloseRoom = () => {
-    console.log('Closing modal');
-    setActiveRoom(null);
-  };
+  const handleOpenRoomModal = () => setShowRoomModal(true);
+  const handleCloseRoomModal = () => setShowRoomModal(false);
 
   useEffect(() => {
     const fetchStartupText = async () => {
@@ -61,26 +52,78 @@ const Home = () => {
     fetchStartupText();
   }, []);
 
-  // Update the room number when the image changes
   const handleImageChange = (imageName, textFile, roomNumber) => {
     setCurrentImage(imageName);
     setIsStartup(false);
-    setCurrentRoom(roomNumber); // Update to the correct room number
+    setCurrentRoom(roomNumber);
     console.log(`Image changed to ${imageName}. Current Room set to ${roomNumber}`);
   };
 
-  // Get the modal component for the active room
-  const CurrentModal = activeRoom ? roomModals[activeRoom] : null;
+  const handleDirection = (direction) => {
+    let nextRoom = null;
+    if (direction === 'west') {
+      switch (currentRoom) {
+        case 1:
+          nextRoom = 2;
+          break;
+        case 2:
+        case 3:
+          nextRoom = 4;
+          break;
+        case 5:
+          nextRoom = 7;
+          break;
+        case 6:
+          nextRoom = 8;
+          break;
+        case 7:
+        case 8:
+          nextRoom = 9;
+          break;
+        default:
+          break;
+      }
+    } else if (direction === 'east') {
+      switch (currentRoom) {
+        case 1:
+          nextRoom = 3;
+          break;
+        case 2:
+          nextRoom = 5;
+          break;
+        case 3:
+          nextRoom = 6;
+          break;
+        case 5:
+          nextRoom = 8;
+          break;
+        case 4:
+          nextRoom = 7;
+          break;
+        case 6:
+          nextRoom = 8;
+          break;
+        case 7:
+        case 8:
+          nextRoom = 9;
+          break;
+        default:
+          break;
+      }
+    }
+
+    if (nextRoom) {
+      handleImageChange(`room${nextRoom}.png`, `room${nextRoom}.md`, nextRoom);
+    }
+  };
+
+  // Define visibility of buttons based on current room
+  const showGoWest = currentRoom !== 4 && currentRoom !== 7 && currentRoom !== 9;
+  const showGoEast = currentRoom !== 6 && currentRoom !== 8 && currentRoom !== 9;
 
   return (
     <div className="container">
-      <Navbar 
-        setImage={(image, text, room) => {
-          console.log(`Navbar is passing room number: ${room}`);
-          handleImageChange(image, text, room);
-        }} 
-        setText={setCurrentText} 
-      />
+      <Navbar setImage={handleImageChange} setText={setCurrentText} />
       <div className="content">
         <div className="matchup-container">
           <div className="matchup-image">
@@ -92,20 +135,37 @@ const Home = () => {
         </div>
       </div>
       <footer className="footer">
-        <button className="footer-button">Go West</button>
-        <button className="footer-button" onClick={handleOpenRoom}>
+        {/* Conditionally render Go West button */}
+        {showGoWest && (
+          <button
+            className="footer-button"
+            onClick={() => handleDirection('west')}
+          >
+            Go West
+          </button>
+        )}
+        <button
+          className="footer-button"
+          onClick={handleOpenRoomModal}
+        >
           Challenge
         </button>
-        <button className="footer-button">Go East</button>
+        {/* Conditionally render Go East button */}
+        {showGoEast && (
+          <button
+            className="footer-button"
+            onClick={() => handleDirection('east')}
+          >
+            Go East
+          </button>
+        )}
       </footer>
-      {/* Render the modal for the active room */}
-      {CurrentModal && (
-        <CurrentModal
-          show={Boolean(activeRoom)}
-          onClose={handleCloseRoom}
-          content={<p>Room {activeRoom} Content</p>}
-        />
-      )}
+      {/* Dynamic room modal based on current room */}
+      {React.createElement(roomModals[currentRoom], {
+        show: showRoomModal,
+        onClose: handleCloseRoomModal,
+        content: <p>Room {currentRoom} Content</p>,
+      })}
     </div>
   );
 };

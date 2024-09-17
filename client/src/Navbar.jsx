@@ -1,4 +1,3 @@
-// client/src/Navbar.jsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from './components/Modal';
@@ -13,8 +12,8 @@ const Navbar = ({ setImage, setText }) => {
     setIsAuthenticated(!!token);
   }, []);
 
-  const handleImageChange = async (imageName, textFile) => {
-    setImage(imageName);
+  const handleImageChange = async (imageName, textFile, roomNumber) => {
+    setImage(imageName, textFile, roomNumber); // Pass roomNumber to Home component
     try {
       const response = await fetch(`/assets/${textFile}`);
       if (!response.ok) {
@@ -56,7 +55,7 @@ const Navbar = ({ setImage, setText }) => {
                 <button
                   key={index}
                   className="nav-item nav-link"
-                  onClick={() => handleImageChange(`room${index + 1}.png`, `room${index + 1}.md`)}
+                  onClick={() => handleImageChange(`room${index + 1}.png`, `room${index + 1}.md`, index + 1)}
                 >
                   Room {index + 1}
                 </button>

@@ -1,8 +1,10 @@
 // client/src/pages/Home.jsx
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import MatchupImage from './MatchupImage';
 import MatchupText from './MatchupText';
+import Room1 from '../components/RoomLogic/room1';
+
 
 const Home = () => {
   // State to manage the current image being displayed
@@ -11,6 +13,10 @@ const Home = () => {
   const [currentText, setCurrentText] = useState('');
   // State to check if it's the startup phase
   const [isStartup, setIsStartup] = useState(true);
+  const [showRoom1, setShowRoom1] = useState(false);
+
+  const handleOpenRoom1 = () => setShowRoom1(true);
+  const handleCloseRoom1 = () => setShowRoom1(false);
 
   useEffect(() => {
     // Function to fetch the startup text content
@@ -58,10 +64,12 @@ const Home = () => {
       </div>
       <footer className="footer">
         {/* Logic for Gates and Challenges */}
-        <button className="footer-button">Option 1</button>
-        <button className="footer-button">Option 2</button>
-        <button className="footer-button">Option 3</button>
+        <button className="footer-button">Go West</button>
+        <button className="footer-button" onClick={handleOpenRoom1}>Challenge</button>
+        <button className="footer-button">Go East</button>
       </footer>
+      <Room1 show={showRoom1} onClose={handleCloseRoom1} content={<p>Room 1 Content</p>} />
+
     </div>
   );
 };

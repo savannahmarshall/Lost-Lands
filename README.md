@@ -21,7 +21,7 @@ Render or Netlify
 Clean up junk files
 CSS 1, design and style
 CSS 2, User experience, Responsive
-Sensitive information, question for TA
+Sensitive information, isolate in .env
 Name for Project, currently Project 3
 Name for Game, currently Into the Myrn
 Readme

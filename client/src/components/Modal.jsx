@@ -17,9 +17,9 @@ const Modal = ({ show, onClose }) => {
       });
 
       console.log('User created:', data.createUser);
-      setIsSignUp(false);
+      setIsSignUp(false); 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error during sign-up:', error);
     }
   };
 
@@ -31,9 +31,9 @@ const Modal = ({ show, onClose }) => {
 
       console.log('User logged in:', data.login.user);
       localStorage.setItem('token', data.login.token);
-      onClose();
+      onClose(); 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error during login:', error);
     }
   };
 
@@ -47,14 +47,19 @@ const Modal = ({ show, onClose }) => {
         <button className="modal-close" onClick={onClose}>
           &times;
         </button>
+        <h1 className="modal-title">{isSignUp ? 'Create User Profile' : 'Login'}</h1>
+        
         {isSignUp ? (
           <SignUpForm onSignUp={handleSignUp} />
         ) : (
           <LoginForm onLogin={handleLogin} />
         )}
-        <button onClick={() => setIsSignUp(!isSignUp)}>
-          {isSignUp ? 'Login' : 'Sign Up'}
-        </button>
+
+<div className="buttons-container">
+  <button className="modal-button" onClick={() => setIsSignUp(!isSignUp)}>
+    {isSignUp ? 'Login' : 'Sign Up'}
+  </button>
+</div>
       </div>
     </div>
   );

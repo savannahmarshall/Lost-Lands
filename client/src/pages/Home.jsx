@@ -1,25 +1,49 @@
-// client/src/pages/Home.jsx
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import MatchupImage from './MatchupImage';
 import MatchupText from './MatchupText';
 import Room1 from '../components/RoomLogic/room1';
+import Room2 from '../components/RoomLogic/room2';
+import Room3 from '../components/RoomLogic/room3';
+import Room4 from '../components/RoomLogic/room4';
+import Room5 from '../components/RoomLogic/room5';
+import Room6 from '../components/RoomLogic/room6';
+import Room7 from '../components/RoomLogic/room7';
+import Room8 from '../components/RoomLogic/room8';
+import Room9 from '../components/RoomLogic/room9';
 
+const roomModals = {
+  1: Room1,
+  2: Room2,
+  3: Room3,
+  4: Room4,
+  5: Room5,
+  6: Room6,
+  7: Room7,
+  8: Room8,
+  9: Room9,
+};
 
 const Home = () => {
-  // State to manage the current image being displayed
   const [currentImage, setCurrentImage] = useState('startup.png');
-  // State to manage the current text being displayed
   const [currentText, setCurrentText] = useState('');
-  // State to check if it's the startup phase
   const [isStartup, setIsStartup] = useState(true);
-  const [showRoom1, setShowRoom1] = useState(false);
+  const [activeRoom, setActiveRoom] = useState(null);
+  const [currentRoom, setCurrentRoom] = useState(1); // Default to room 1
 
-  const handleOpenRoom1 = () => setShowRoom1(true);
-  const handleCloseRoom1 = () => setShowRoom1(false);
+  // Open the modal for the current room
+  const handleOpenRoom = () => {
+    console.log(`Challenge button clicked. Current Room: ${currentRoom}`);
+    setActiveRoom(currentRoom);
+  };
+
+  // Close the modal
+  const handleCloseRoom = () => {
+    console.log('Closing modal');
+    setActiveRoom(null);
+  };
 
   useEffect(() => {
-    // Function to fetch the startup text content
     const fetchStartupText = async () => {
       try {
         const response = await fetch('/assets/startup.md');
@@ -34,42 +58,54 @@ const Home = () => {
       }
     };
 
-    // Fetch the startup text when the component mounts
     fetchStartupText();
   }, []);
 
-  // Function to handle image and text change
-  const handleImageChange = (imageName, textFile) => {
+  // Update the room number when the image changes
+  const handleImageChange = (imageName, textFile, roomNumber) => {
     setCurrentImage(imageName);
     setIsStartup(false);
-    // Fetch the text content for the selected room
-    // ...
+    setCurrentRoom(roomNumber); // Update to the correct room number
+    console.log(`Image changed to ${imageName}. Current Room set to ${roomNumber}`);
   };
+
+  // Get the modal component for the active room
+  const CurrentModal = activeRoom ? roomModals[activeRoom] : null;
 
   return (
     <div className="container">
-      {/* Navbar component with props to set image and text */}
-      <Navbar setImage={handleImageChange} setText={setCurrentText} />
+      <Navbar 
+        setImage={(image, text, room) => {
+          console.log(`Navbar is passing room number: ${room}`);
+          handleImageChange(image, text, room);
+        }} 
+        setText={setCurrentText} 
+      />
       <div className="content">
         <div className="matchup-container">
           <div className="matchup-image">
-            {/* MatchupImage component to display the current image */}
             <MatchupImage src={`/assets/${currentImage}`} alt="Matchup Image" />
           </div>
           <div className="matchup-text">
-            {/* MatchupText component to display the current text */}
             <MatchupText text={currentText} isStartup={isStartup} />
           </div>
         </div>
       </div>
       <footer className="footer">
-        {/* Logic for Gates and Challenges */}
         <button className="footer-button">Go West</button>
-        <button className="footer-button" onClick={handleOpenRoom1}>Challenge</button>
+        <button className="footer-button" onClick={handleOpenRoom}>
+          Challenge
+        </button>
         <button className="footer-button">Go East</button>
       </footer>
-      <Room1 show={showRoom1} onClose={handleCloseRoom1} content={<p>Room 1 Content</p>} />
-
+      {/* Render the modal for the active room */}
+      {CurrentModal && (
+        <CurrentModal
+          show={Boolean(activeRoom)}
+          onClose={handleCloseRoom}
+          content={<p>Room {activeRoom} Content</p>}
+        />
+      )}
     </div>
   );
 };

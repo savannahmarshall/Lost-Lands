@@ -1,5 +1,5 @@
-// client/src/components/SignUpForm.jsx
 import React, { useState } from 'react';
+import './Modal.css';
 
 const SignUpForm = ({ onSignUp }) => {
   const [username, setUsername] = useState('');
@@ -7,31 +7,38 @@ const SignUpForm = ({ onSignUp }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignUp({ username, password });
+    if (onSignUp) {
+      onSignUp({ username, password });
+    } else {
+      console.log('Sign Up:', { username, password });
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Create User Profile</h2>
-      <div>
-        <label>Username:</label>
+    <form onSubmit={handleSubmit} className="form">
+      <div className="input-container">
+        <label className="input-label">Username:</label>
         <input
           type="text"
+          className="input-field"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </div>
-      <div>
-        <label>Password:</label>
+      <div className="input-container">
+        <label className="input-label">Password:</label>
         <input
           type="password"
+          className="input-field"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
-      <button type="submit">Sign Up</button>
+      <div className="buttons-container">
+        <button className="modal-button" type="submit">Sign Up</button>
+      </div>
     </form>
   );
 };

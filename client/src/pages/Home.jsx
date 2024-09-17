@@ -30,96 +30,83 @@ const Home = () => {
   const [isStartup, setIsStartup] = useState(true);
   const [currentRoom, setCurrentRoom] = useState(1);
   const [showRoomModal, setShowRoomModal] = useState(false);
+  const [roomUnlocked, setRoomUnlocked] = useState({});
+  const [buttonsEnabled, setButtonsEnabled] = useState(false);
+
+  useEffect(() => {
+    // Reset all rooms to unlocked
+    const activationState = {};
+    for (let i = 1; i <= 9; i++) {
+      activationState[i] = true;
+      localStorage.setItem(`room${i}Activated`, 'true'); // Set local storage to unlocked
+    }
+    setRoomUnlocked(activationState);
+  }, []);
 
   const handleOpenRoomModal = () => setShowRoomModal(true);
   const handleCloseRoomModal = () => setShowRoomModal(false);
-
-  useEffect(() => {
-    const fetchStartupText = async () => {
-      try {
-        const response = await fetch('/assets/startup.md');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const text = await response.text();
-        setCurrentText(text);
-      } catch (error) {
-        console.error('Failed to fetch startup text:', error);
-        setCurrentText('Failed to load startup text content.');
-      }
-    };
-
-    fetchStartupText();
-  }, []);
 
   const handleImageChange = (imageName, textFile, roomNumber) => {
     setCurrentImage(imageName);
     setIsStartup(false);
     setCurrentRoom(roomNumber);
-    console.log(`Image changed to ${imageName}. Current Room set to ${roomNumber}`);
   };
 
   const handleDirection = (direction) => {
     let nextRoom = null;
     if (direction === 'west') {
       switch (currentRoom) {
-        case 1:
-          nextRoom = 2;
-          break;
-        case 2:
-        case 3:
-          nextRoom = 4;
-          break;
-        case 5:
-          nextRoom = 7;
-          break;
-        case 6:
-          nextRoom = 8;
-          break;
-        case 7:
-        case 8:
-          nextRoom = 9;
-          break;
-        default:
-          break;
+        case 1: nextRoom = 2; break;
+        case 2: nextRoom = 4; break;
+        case 3: nextRoom = 4; break;
+        case 5: nextRoom = 7; break;
+        case 6: nextRoom = 8; break;
+        case 7: nextRoom = 9; break;
+        case 8: nextRoom = 9; break;
+        default: break;
       }
     } else if (direction === 'east') {
       switch (currentRoom) {
-        case 1:
-          nextRoom = 3;
-          break;
-        case 2:
-          nextRoom = 5;
-          break;
-        case 3:
-          nextRoom = 6;
-          break;
-        case 5:
-          nextRoom = 8;
-          break;
-        case 4:
-          nextRoom = 7;
-          break;
-        case 6:
-          nextRoom = 8;
-          break;
-        case 7:
-        case 8:
-          nextRoom = 9;
-          break;
-        default:
-          break;
+        case 1: nextRoom = 3; break;
+        case 2: nextRoom = 5; break;
+        case 3: nextRoom = 6; break;
+        case 5: nextRoom = 8; break;
+        case 4: nextRoom = 7; break;
+        case 6: nextRoom = 8; break;
+        case 7: nextRoom = 9; break;
+        case 8: nextRoom = 9; break;
+        default: break;
       }
     }
 
     if (nextRoom) {
+      localStorage.removeItem(`room${currentRoom}Activated`);
+      setRoomUnlocked((prev) => ({ ...prev, [currentRoom]: false }));
       handleImageChange(`room${nextRoom}.png`, `room${nextRoom}.md`, nextRoom);
     }
   };
 
-  // Define visibility of buttons based on current room
-  const showGoWest = currentRoom !== 4 && currentRoom !== 7 && currentRoom !== 9;
-  const showGoEast = currentRoom !== 6 && currentRoom !== 8 && currentRoom !== 9;
+  const handleRoomUnlock = (roomNumber) => {
+    setRoomUnlocked((prev) => {
+      const updated = { ...prev, [roomNumber]: true };
+      console.log('Updated Room Unlocked Status:', updated);
+      return updated;
+    });
+    localStorage.setItem(`room${roomNumber}Activated`, 'true');
+  };
+
+  const isWestDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
+  const isEastDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
+
+  // Determine button visibility based on the current room
+  const showGoWestButton = [1, 2, 3, 5, 6, 7, 8].includes(currentRoom);
+  const showGoEastButton = [1, 2, 3, 5, 4, 6, 7, 8].includes(currentRoom) && currentRoom !== 9;
+
+  console.log(`Room ${currentRoom}:`);
+  console.log(`- West Button Disabled: ${isWestDisabled}`);
+  console.log(`- East Button Disabled: ${isEastDisabled}`);
+  console.log(`- Buttons Enabled: ${buttonsEnabled}`);
+  console.log(`- Room Unlocked Status:`, roomUnlocked);
 
   return (
     <div className="container">
@@ -135,11 +122,11 @@ const Home = () => {
         </div>
       </div>
       <footer className="footer">
-        {/* Conditionally render Go West button */}
-        {showGoWest && (
+        {showGoWestButton && (
           <button
             className="footer-button"
             onClick={() => handleDirection('west')}
+            disabled={isWestDisabled}
           >
             Go West
           </button>
@@ -150,21 +137,27 @@ const Home = () => {
         >
           Challenge
         </button>
-        {/* Conditionally render Go East button */}
-        {showGoEast && (
+        {showGoEastButton && (
           <button
             className="footer-button"
             onClick={() => handleDirection('east')}
+            disabled={isEastDisabled}
           >
             Go East
           </button>
         )}
+        <button
+          className="footer-button"
+          onClick={() => setButtonsEnabled((prev) => !prev)}
+        >
+          Toggle Buttons {buttonsEnabled ? 'Disable' : 'Enable'}
+        </button>
       </footer>
-      {/* Dynamic room modal based on current room */}
       {React.createElement(roomModals[currentRoom], {
         show: showRoomModal,
         onClose: handleCloseRoomModal,
         content: <p>Room {currentRoom} Content</p>,
+        onUnlock: () => handleRoomUnlock(currentRoom),
       })}
     </div>
   );

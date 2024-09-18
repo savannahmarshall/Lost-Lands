@@ -33,15 +33,15 @@ const Home = () => {
   const [roomUnlocked, setRoomUnlocked] = useState({});
   const [buttonsEnabled, setButtonsEnabled] = useState(false);
 
-  useEffect(() => {
-    // Reset all rooms to unlocked
-    const activationState = {};
-    for (let i = 1; i <= 9; i++) {
-      activationState[i] = true;
-      localStorage.setItem(`room${i}Activated`, 'true'); // Set local storage to unlocked
-    }
-    setRoomUnlocked(activationState);
-  }, []);
+  // useEffect(() => {
+  //   // Reset all rooms to unlocked
+  //   const activationState = {};
+  //   for (let i = 1; i <= 9; i++) {
+  //     activationState[i] = true;
+  //     localStorage.setItem(`room${i}Activated`, 'true'); // Set local storage to unlocked
+  //   }
+  //   setRoomUnlocked(activationState);
+  // }, []);
 
   const handleOpenRoomModal = () => setShowRoomModal(true);
   const handleCloseRoomModal = () => setShowRoomModal(false);
@@ -86,27 +86,27 @@ const Home = () => {
     }
   };
 
-  const handleRoomUnlock = (roomNumber) => {
-    setRoomUnlocked((prev) => {
-      const updated = { ...prev, [roomNumber]: true };
-      console.log('Updated Room Unlocked Status:', updated);
-      return updated;
-    });
-    localStorage.setItem(`room${roomNumber}Activated`, 'true');
-  };
+  // const handleRoomUnlock = (roomNumber) => {
+  //   setRoomUnlocked((prev) => {
+  //     const updated = { ...prev, [roomNumber]: true };
+  //     console.log('Updated Room Unlocked Status:', updated);
+  //     return updated;
+  //   });
+  //   localStorage.setItem(`room${roomNumber}Activated`, 'true');
+  // };
 
-  const isWestDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
-  const isEastDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
+  // const isWestDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
+  // const isEastDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
 
   // Determine button visibility based on the current room
   const showGoWestButton = [1, 2, 3, 5, 6, 7, 8].includes(currentRoom);
   const showGoEastButton = [1, 2, 3, 5, 4, 6, 7, 8].includes(currentRoom) && currentRoom !== 9;
 
   console.log(`Room ${currentRoom}:`);
-  console.log(`- West Button Disabled: ${isWestDisabled}`);
-  console.log(`- East Button Disabled: ${isEastDisabled}`);
-  console.log(`- Buttons Enabled: ${buttonsEnabled}`);
-  console.log(`- Room Unlocked Status:`, roomUnlocked);
+  // console.log(`- West Button Disabled: ${isWestDisabled}`);
+  // console.log(`- East Button Disabled: ${isEastDisabled}`);
+  // console.log(`- Buttons Enabled: ${buttonsEnabled}`);
+  // console.log(`- Room Unlocked Status:`, roomUnlocked);
 
   return (
     <div className="container">
@@ -126,7 +126,7 @@ const Home = () => {
           <button
             className="footer-button"
             onClick={() => handleDirection('west')}
-            disabled={isWestDisabled}
+            // disabled={isWestDisabled}
           >
             Go West
           </button>
@@ -141,23 +141,23 @@ const Home = () => {
           <button
             className="footer-button"
             onClick={() => handleDirection('east')}
-            disabled={isEastDisabled}
+            // disabled={isEastDisabled}
           >
             Go East
           </button>
         )}
-        <button
+        {/* <button
           className="footer-button"
           onClick={() => setButtonsEnabled((prev) => !prev)}
         >
           Toggle Buttons {buttonsEnabled ? 'Disable' : 'Enable'}
-        </button>
+        </button> */}
       </footer>
       {React.createElement(roomModals[currentRoom], {
         show: showRoomModal,
         onClose: handleCloseRoomModal,
         content: <p>Room {currentRoom} Content</p>,
-        onUnlock: () => handleRoomUnlock(currentRoom),
+        // onUnlock: () => handleRoomUnlock(currentRoom),
       })}
     </div>
   );

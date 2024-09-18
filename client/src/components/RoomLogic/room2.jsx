@@ -1,6 +1,6 @@
 // client/src/components/RoomLogic/Room1.jsx
 import React from 'react';
-import '../Modal.css';
+import './room2.css';
 
 const Room2 = ({ show, onClose, content }) => {
   if (!show) {

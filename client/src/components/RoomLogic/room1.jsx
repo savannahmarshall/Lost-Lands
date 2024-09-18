@@ -8,7 +8,6 @@ const Room1 = ({ show, onClose, content }) => {
   // Load activation state from local storage on mount
   useEffect(() => {
     const storedActivationState = localStorage.getItem('room1Activated');
-    console.log('Stored Activation State:', storedActivationState); 
     setIsActivated(storedActivationState === 'true');
   }, []);
 

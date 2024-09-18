@@ -1,1 +1,0 @@
-The bloodthirsty beast of the Cursed Woods is upon you! There is no choice but to flee, and seek new paths elsewhere.

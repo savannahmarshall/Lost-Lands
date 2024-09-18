@@ -8,6 +8,7 @@ const Room1 = ({ show, onClose, content }) => {
   // Load activation state from local storage on mount
   useEffect(() => {
     const storedActivationState = localStorage.getItem('room1Activated');
+    console.log('Stored Activation State:', storedActivationState); 
     setIsActivated(storedActivationState === 'true');
   }, []);
 
@@ -38,12 +39,13 @@ const Room1 = ({ show, onClose, content }) => {
                   onChange={handlePasswordChange}
                 />
                 <button onClick={handlePasswordSubmit}>Submit</button>
-                {isPasswordCorrect === false && <p style={{ color: 'red' }}>The spirits are confused. Try again.</p>}
+                {isPasswordCorrect === false && (
+                  <p style={{ color: 'red' }}>The spirits are confused. Try again.</p>
+                )}
               </div>
             ) : (
               <div>
-                <p>{content}</p>
-                {/* Add any additional content or actions here */}
+                <div>{content}</div>
               </div>
             )}
           </div>

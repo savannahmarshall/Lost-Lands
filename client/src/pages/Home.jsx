@@ -38,13 +38,12 @@ const Home = () => {
       setIsAuthenticated(true);
     }
   }, []);
-
-  // Redirect to Room 1
+  
   useEffect(() => {
     if (isAuthenticated) {
       setCurrentRoom(1);
       setCurrentImage('room1.png');
-      setCurrentText('Room 1 Content');
+      setShowRoomModal(false);
     }
   }, [isAuthenticated]);
 
@@ -80,12 +79,12 @@ const Home = () => {
   const renderDirectionButtons = () => {
     const isFirstRoom = currentRoom === 1;
     const isLastRoom = currentRoom === 9;
-
+  
     return (
       <>
         {!isFirstRoom && isAuthenticated && (
           <button className="footer-button" onClick={() => handleDirection('west')}>
-            Go West
+            Previous Room
           </button>
         )}
         {isAuthenticated && (
@@ -95,13 +94,12 @@ const Home = () => {
         )}
         {!isLastRoom && isAuthenticated && (
           <button className="footer-button" onClick={() => handleDirection('east')}>
-            Go East
+            Next Room
           </button>
         )}
       </>
     );
   };
-
   return (
     <div className="container">
       <Navbar setImage={handleImageChange} setText={setCurrentText} />

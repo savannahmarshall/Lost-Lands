@@ -12,21 +12,6 @@ const Navbar = ({ setImage, setText }) => {
     setIsAuthenticated(!!token);
   }, []);
 
-  const handleImageChange = async (imageName, textFile, roomNumber) => {
-    setImage(imageName, textFile, roomNumber); // Pass roomNumber to Home component
-    try {
-      const response = await fetch(`/assets/${textFile}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const text = await response.text();
-      setText(text);
-    } catch (error) {
-      console.error('Failed to fetch text:', error);
-      setText('Failed to load text content.');
-    }
-  };
-
   const handleLoginClick = () => {
     setShowModal(true);
   };
@@ -46,21 +31,10 @@ const Navbar = ({ setImage, setText }) => {
   return (
     <nav className="navbar bg-dark">
       <div className="container">
-        <Link className="navbar-brand text-white" to="/">Jandreah</Link>
+        <Link className="navbar-brand text-white" to="/">Lost Lands</Link>
         <div className="navbar-nav">
           {isAuthenticated ? (
-            <>
-              <button className="nav-item nav-link login-button" onClick={handleLogout}>Log Out</button>
-              {[...Array(9)].map((_, index) => (
-                <button
-                  key={index}
-                  className="nav-item nav-link"
-                  onClick={() => handleImageChange(`room${index + 1}.png`, `room${index + 1}.md`, index + 1)}
-                >
-                  Room {index + 1}
-                </button>
-              ))}
-            </>
+            <button className="nav-item nav-link login-button" onClick={handleLogout}>Log Out</button>
           ) : (
             <Link className="nav-item nav-link login-button" to="#" onClick={handleLoginClick}>Login</Link>
           )}

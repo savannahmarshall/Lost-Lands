@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../Navbar';
 import MatchupImage from './MatchupImage';
 import MatchupText from './MatchupText';
@@ -25,30 +25,36 @@ const roomModals = {
 };
 
 const Home = () => {
-  const [currentImage, setCurrentImage] = useState('startup.png');
+  const [currentPage, setCurrentPage] = useState('room1'); // Start with room1
+  const [currentImage, setCurrentImage] = useState('room1.png');
   const [currentText, setCurrentText] = useState('');
-  const [isStartup, setIsStartup] = useState(true);
   const [currentRoom, setCurrentRoom] = useState(1);
   const [showRoomModal, setShowRoomModal] = useState(false);
   const [roomUnlocked, setRoomUnlocked] = useState({});
   const [buttonsEnabled, setButtonsEnabled] = useState(false);
 
-  // useEffect(() => {
-  //   // Reset all rooms to unlocked
-  //   const activationState = {};
-  //   for (let i = 1; i <= 9; i++) {
-  //     activationState[i] = true;
-  //     localStorage.setItem(`room${i}Activated`, 'true'); // Set local storage to unlocked
-  //   }
-  //   setRoomUnlocked(activationState);
-  // }, []);
+  //Current page logic
+  const renderContent = () => {
+    console.log(`Rendering page: ${currentPage}`);
+  
+    switch (currentPage) {
+      case 'room1':
+        console.log('Rendering Room 1');
+        return <Room1 />;
+      case 'room2':
+        console.log('Rendering Room 2');
+        return <Room2 />;
+      default:
+        console.log('Page not found');
+        return <div>Page not found</div>;
+    }
+  };
 
   const handleOpenRoomModal = () => setShowRoomModal(true);
   const handleCloseRoomModal = () => setShowRoomModal(false);
 
   const handleImageChange = (imageName, textFile, roomNumber) => {
     setCurrentImage(imageName);
-    setIsStartup(false);
     setCurrentRoom(roomNumber);
   };
 
@@ -56,57 +62,72 @@ const Home = () => {
     let nextRoom = null;
     if (direction === 'west') {
       switch (currentRoom) {
-        case 1: nextRoom = 2; break;
-        case 2: nextRoom = 4; break;
-        case 3: nextRoom = 4; break;
-        case 5: nextRoom = 7; break;
-        case 6: nextRoom = 8; break;
-        case 7: nextRoom = 9; break;
-        case 8: nextRoom = 9; break;
-        default: break;
+        case 1:
+          nextRoom = 2;
+          break;
+        case 2:
+          nextRoom = 4;
+          break;
+        case 3:
+          nextRoom = 4;
+          break;
+        case 5:
+          nextRoom = 7;
+          break;
+        case 6:
+          nextRoom = 8;
+          break;
+        case 7:
+          nextRoom = 9;
+          break;
+        case 8:
+          nextRoom = 9;
+          break;
+        default:
+          break;
       }
     } else if (direction === 'east') {
       switch (currentRoom) {
-        case 1: nextRoom = 3; break;
-        case 2: nextRoom = 5; break;
-        case 3: nextRoom = 6; break;
-        case 5: nextRoom = 8; break;
-        case 4: nextRoom = 7; break;
-        case 6: nextRoom = 8; break;
-        case 7: nextRoom = 9; break;
-        case 8: nextRoom = 9; break;
-        default: break;
+        case 1:
+          nextRoom = 3;
+          break;
+        case 2:
+          nextRoom = 5;
+          break;
+        case 3:
+          nextRoom = 6;
+          break;
+        case 5:
+          nextRoom = 8;
+          break;
+        case 4:
+          nextRoom = 7;
+          break;
+        case 6:
+          nextRoom = 8;
+          break;
+        case 7:
+          nextRoom = 9;
+          break;
+        case 8:
+          nextRoom = 9;
+          break;
+        default:
+          break;
       }
     }
 
     if (nextRoom) {
+      console.log(`Transitioning from Room ${currentRoom} to Room ${nextRoom}`);
+
       localStorage.removeItem(`room${currentRoom}Activated`);
       setRoomUnlocked((prev) => ({ ...prev, [currentRoom]: false }));
       handleImageChange(`room${nextRoom}.png`, `room${nextRoom}.md`, nextRoom);
     }
   };
 
-  // const handleRoomUnlock = (roomNumber) => {
-  //   setRoomUnlocked((prev) => {
-  //     const updated = { ...prev, [roomNumber]: true };
-  //     console.log('Updated Room Unlocked Status:', updated);
-  //     return updated;
-  //   });
-  //   localStorage.setItem(`room${roomNumber}Activated`, 'true');
-  // };
-
-  // const isWestDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
-  // const isEastDisabled = !buttonsEnabled || !roomUnlocked[currentRoom];
-
-  // Determine button visibility based on the current room
   const showGoWestButton = [1, 2, 3, 5, 6, 7, 8].includes(currentRoom);
   const showGoEastButton = [1, 2, 3, 5, 4, 6, 7, 8].includes(currentRoom) && currentRoom !== 9;
-
-  console.log(`Room ${currentRoom}:`);
-  // console.log(`- West Button Disabled: ${isWestDisabled}`);
-  // console.log(`- East Button Disabled: ${isEastDisabled}`);
-  // console.log(`- Buttons Enabled: ${buttonsEnabled}`);
-  // console.log(`- Room Unlocked Status:`, roomUnlocked);
 
   return (
     <div className="container">
@@ -117,47 +138,29 @@ const Home = () => {
             <MatchupImage src={`/assets/${currentImage}`} alt="Matchup Image" />
           </div>
           <div className="matchup-text">
-            <MatchupText text={currentText} isStartup={isStartup} />
+            <MatchupText text={currentText} />
           </div>
         </div>
       </div>
       <footer className="footer">
         {showGoWestButton && (
-          <button
-            className="footer-button"
-            onClick={() => handleDirection('west')}
-            // disabled={isWestDisabled}
-          >
+          <button className="footer-button" onClick={() => handleDirection('west')}>
             Go West
           </button>
         )}
-        <button
-          className="footer-button"
-          onClick={handleOpenRoomModal}
-        >
+        <button className="footer-button" onClick={handleOpenRoomModal}>
           Challenge
         </button>
         {showGoEastButton && (
-          <button
-            className="footer-button"
-            onClick={() => handleDirection('east')}
-            // disabled={isEastDisabled}
-          >
+          <button className="footer-button" onClick={() => handleDirection('east')}>
             Go East
           </button>
         )}
-        {/* <button
-          className="footer-button"
-          onClick={() => setButtonsEnabled((prev) => !prev)}
-        >
-          Toggle Buttons {buttonsEnabled ? 'Disable' : 'Enable'}
-        </button> */}
       </footer>
       {React.createElement(roomModals[currentRoom], {
         show: showRoomModal,
         onClose: handleCloseRoomModal,
         content: <p>Room {currentRoom} Content</p>,
-        // onUnlock: () => handleRoomUnlock(currentRoom),
       })}
     </div>
   );

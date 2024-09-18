@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import './Modal.css';
+import './LoginModal.css';
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import { CREATE_USER, LOGIN_USER } from '../utils/mutations';

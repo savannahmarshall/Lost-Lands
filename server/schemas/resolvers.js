@@ -1,9 +1,9 @@
-const { Tech, Matchup, User } = require('../models');
+const { Tech, Matchup, User, Item } = require('../models'); // Imports Item model here
 const { AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const JWT_SECRET = 'your_secret_key'; // Hardcoded secret key
+const JWT_SECRET = 'your_secret_key'; 
 
 const resolvers = {
   Query: {
@@ -14,6 +14,9 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return Matchup.find(params);
     },
+    // items: async () => { // Query to fetch all items
+    //   return Item.find({});
+    // },
   },
   Mutation: {
     createMatchup: async (parent, args) => {
@@ -44,6 +47,11 @@ const resolvers = {
       }
       const token = jwt.sign({ userId: user._id }, JWT_SECRET);
       return { token, user };
+    // },
+    // addItem: async (parent, { name, description }) => { // mutation for adding an item
+    //   const newItem = new Item({ name, description });
+    //   await newItem.save();
+    //   return newItem; // returns the newly created item
     },
   },
 };

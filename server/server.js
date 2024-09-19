@@ -5,6 +5,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path'); 
 const { typeDefs, resolvers } = require('./schemas');
 const connectDB = require('./config/connection');
+// const Item = require('./itemModel');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -30,8 +31,7 @@ const server = new ApolloServer({
 
 // Add a route to handle the root
 app.get('/', (req, res) => {
-
-  //static HTML
+  // Serve static HTML
   res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
 });
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from './components/Modal';
+import Modal from './components/LoginModal';
 
 const Navbar = ({ setImage, setText }) => {
   const [showModal, setShowModal] = useState(false);

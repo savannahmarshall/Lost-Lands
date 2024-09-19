@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Modal.css';
+import './LoginModal.css';
 
 const SignUpForm = ({ onSignUp }) => {
   const [username, setUsername] = useState('');

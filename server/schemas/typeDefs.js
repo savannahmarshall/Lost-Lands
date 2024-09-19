@@ -1,21 +1,14 @@
 const typeDefs = `
-  type Tech {
-    _id: ID!
-    name: String!
-  }
-
-  type Matchup {
-    _id: ID!
-    tech1: String!
-    tech2: String!
-    tech1_votes: Int
-    tech2_votes: Int
-  }
-
   type User {
     _id: ID!
     username: String!
     password: String!
+  }
+
+  type Item {
+    _id: ID!
+    name: String!
+    description: String!
   }
 
   type AuthPayload {
@@ -24,15 +17,14 @@ const typeDefs = `
   }
 
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
+    users: [User]   # Query to fetch all users (if needed)
+    items: [Item]   # Query to fetch all items
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
     createUser(username: String!, password: String!): User
     login(username: String!, password: String!): AuthPayload
+    addItem(name: String!, description: String!): Item  # Mutation to add an item
   }
 `;
 

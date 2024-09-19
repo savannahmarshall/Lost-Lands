@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './room1.css';
 import './challengeModals.css';
 
@@ -9,28 +9,44 @@ const Room1 = ({ show, onClose, content }) => {
   const options = [
     { id: 1, text: 'Option 1', isCorrect: false },
     { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true }, // put the correct answer to the challenge here later
+    { id: 3, text: 'Option 3', isCorrect: true }, // the correct answer is here
     { id: 4, text: 'Option 4', isCorrect: false },
   ];
 
+  // Function to add an item to the inventory
+  const addItem = async () => {
+    const response = await fetch('/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          mutation AddItem($name: String!, $description: String!) {
+            addItem(name: $name, description: $description) {
+              name
+              description
+            }
+          }
+        `,
+        variables: {
+          name: 'Room 1 Item', // we can change this later, I just have it set to this to test and make sure data is going to mongo
+          description: 'This is an item from Room 1',
+        },
+      }),
+    });
+
+    const result = await response.json();
+    console.log(result.data.addItem);
+  };
+
   const handleOptionSelect = async (option) => {
     setSelectedOption(option);
-    if (option.isCorrect) {
-      // Make an API call to save the item to MongoDB Atlas database.
-      try {
-        const response = await fetch('/api/inventory', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ item: 'Your Item Name' }), // put the actual item data later
-        });
 
-        if (response.ok) {
-          setIsCorrect(true);
-        } else {
-          setIsCorrect(false);
-        }
+    if (option.isCorrect) {
+      try {
+        await addItem(); 
+        setIsCorrect(true);
       } catch (error) {
         console.error('Error saving item:', error);
         setIsCorrect(false);

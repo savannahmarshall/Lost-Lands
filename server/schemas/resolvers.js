@@ -1,36 +1,20 @@
-const { Tech, Matchup, User, Item } = require('../models'); // Imports Item model here
+const { User, Item } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const JWT_SECRET = 'your_secret_key'; 
+const JWT_SECRET = 'your_secret_key';
 
 const resolvers = {
   Query: {
-    tech: async () => {
-      return Tech.find({});
+    users: async () => {
+      return User.find({});
     },
-    matchups: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return Matchup.find(params);
+    items: async () => {
+      return Item.find({});
     },
-    // items: async () => { // Query to fetch all items
-    //   return Item.find({});
-    // },
   },
   Mutation: {
-    createMatchup: async (parent, args) => {
-      const matchup = await Matchup.create(args);
-      return matchup;
-    },
-    createVote: async (parent, { _id, techNum }) => {
-      const vote = await Matchup.findOneAndUpdate(
-        { _id },
-        { $inc: { [`tech${techNum}_votes`]: 1 } },
-        { new: true }
-      );
-      return vote;
-    },
     createUser: async (parent, { username, password }) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({ username, password: hashedPassword });
@@ -47,11 +31,11 @@ const resolvers = {
       }
       const token = jwt.sign({ userId: user._id }, JWT_SECRET);
       return { token, user };
-    // },
-    // addItem: async (parent, { name, description }) => { // mutation for adding an item
-    //   const newItem = new Item({ name, description });
-    //   await newItem.save();
-    //   return newItem; // returns the newly created item
+    },
+    addItem: async (parent, { name, description }) => {
+      const newItem = new Item({ name, description });
+      await newItem.save();
+      return newItem;
     },
   },
 };

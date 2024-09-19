@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './room1.css';
 import './challengeModals.css';
 
-const Room1 = ({ show, onClose, content }) => {
+const Room1 = ({ show, onClose }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
 
@@ -30,7 +30,7 @@ const Room1 = ({ show, onClose, content }) => {
           }
         `,
         variables: {
-          name: 'Room 1 Item', // we can change this later, I just have it set to this to test and make sure data is going to mongo
+          name: 'Room 1 Item', // we can change this later, I just have it set to this to test and make sure data is going to mongo atlas
           description: 'This is an item from Room 1',
         },
       }),
@@ -45,7 +45,7 @@ const Room1 = ({ show, onClose, content }) => {
 
     if (option.isCorrect) {
       try {
-        await addItem(); 
+        await addItem();
         setIsCorrect(true);
       } catch (error) {
         console.error('Error saving item:', error);
@@ -57,33 +57,43 @@ const Room1 = ({ show, onClose, content }) => {
   };
 
   return (
-    show && (
-      <div className="challengemodal-overlay">
-        <div className="challengemodal-content">
-          <button className="challengemodal-close-button" onClick={onClose}>X</button>
-          <div className="challengemodal-body">
-            <p>Select the correct option:</p>
-            <div>
-              {options.map(option => (
-                <button
-                  key={option.id}
-                  onClick={() => handleOptionSelect(option)}
-                  className="challengemodal-option"
-                >
-                  {option.text}
-                </button>
-              ))}
+    <div className="room-container">
+      <div className="room-image">
+        {/* room 1 image will go here */}
+        <img src="/path to image goes here later" alt="Room 1 image alt text" />
+      </div>
+      <div className="room-text">
+        text for page one will go here later!
+      </div>
+
+      {show && (
+        <div className="challengemodal-overlay">
+          <div className="challengemodal-content">
+            <button className="challengemodal-close-button" onClick={onClose}>X</button>
+            <div className="challengemodal-body">
+              <p>Select the correct option:</p>
+              <div>
+                {options.map(option => (
+                  <button
+                    key={option.id}
+                    onClick={() => handleOptionSelect(option)}
+                    className="challengemodal-option"
+                  >
+                    {option.text}
+                  </button>
+                ))}
+              </div>
+              {isCorrect === true && (
+                <p className="challengemodal-success">Item added to your inventory!</p>
+              )}
+              {isCorrect === false && (
+                <p className="challengemodal-error">Incorrect option, try again!</p>
+              )}
             </div>
-            {isCorrect === true && (
-              <p className="challengemodal-success">Item added to your inventory!</p>
-            )}
-            {isCorrect === false && (
-              <p className="challengemodal-error">Incorrect option, try again!</p>
-            )}
           </div>
         </div>
-      </div>
-    )
+      )}
+    </div>
   );
 };
 

@@ -1,25 +1,16 @@
-/* client/src/App.css */
-
 /* Ensure the body, html, and root elements take up the full height */
 body, html, #root {
   height: 100%;
   margin: 0;
-  background-color: #121212; /* Dark background color */
-  color: #ffffff; /* Light text color */
-}
-
-/* Container for the entire app */
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  background-color: #000000; 
+  color: #ffffff; 
 }
 
 /* Navbar styles */
 .navbar {
   flex-shrink: 0;
   padding: 1rem;
-  background-color: #1f1f1f; /* Dark background color */
+  background-color: #1f1f1f; 
 }
 
 .navbar .container {
@@ -36,13 +27,13 @@ body, html, #root {
 .nav-item {
   text-decoration: none;
   background-color: green;
-  color: #ffffff; /* Light text color */
+  color: #ffffff; 
 }
 
 /* Specific styles for the login button */
 .login-button {
   background-color: #007bff;
-  color: #ffffff; /* Light text color */
+  color: #ffffff; 
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   text-decoration: none;
@@ -59,48 +50,12 @@ body, html, #root {
   overflow: hidden;
 }
 
-/* Matchup container to hold the image and text side by side */
-.matchup-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-}
-
-.matchup-image, .matchup-text {
-  flex: 1;
-  overflow: auto;
-  padding: 20px;
-}
-
-.matchup-image img {
-  width: 100%;
-  height: auto;
-}
-
-.matchup-text {
-  font-size: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* Ensure the text container grows to fill available space */
-  background-color: #121212; /* Dark background color */
-  color: #ffffff; /* Light text color */
-}
-
-.matchup-text > * {
-  flex-grow: 1; /* Ensure child elements grow to fill available space */
-}
-
-.large-font {
-  font-size: 3rem; /* Adjust the size as needed */
-}
-
 /* Footer styles */
 .footer {
   display: flex;
   justify-content: center;
   padding: 10px;
-  background-color: #1f1f1f; /* Dark background color */
+  background-color: #1f1f1f; 
 }
 
 .footer-button {
@@ -108,12 +63,12 @@ body, html, #root {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: green; /* Dark button background color */
-  color: #ffffff; /* Light text color */
+  background-color: green; 
+  color: #ffffff; 
   border: none;
   border-radius: 0.25rem;
 }
 
 .footer-button:hover {
-  background-color: #0f6969; /* Slightly lighter background on hover */
+  background-color: #0f6969; 
 }

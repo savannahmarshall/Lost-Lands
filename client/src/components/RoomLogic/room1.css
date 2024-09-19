@@ -1,0 +1,28 @@
+.room-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    padding: 20px;
+  }
+  
+  .room-image {
+    width: 80%; 
+    max-width: 800px; 
+    height: auto; 
+    margin-bottom: 20px; 
+    background-color: #f0f0f0; 
+  }
+  
+  .room-image img {
+    width: 100%; 
+    height: auto;
+  }
+  
+  .room-text {
+    font-size: 24px;
+    color: #c03b3b;
+    margin: 0; 
+    text-align: center; 
+  }

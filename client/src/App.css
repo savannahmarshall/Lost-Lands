@@ -9,55 +9,58 @@ body {
 
 /* Navbar styles */
 .navbar {
-  flex-shrink: 0;
-  padding: 1rem;
-  background-color: #1f1f1f; /* Dark gray background for navbar */
-}
-
-.navbar .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   align-items: center;
+  padding: 1rem;
+  background-color: #060606; 
 }
 
-.navbar-nav {
-  display: flex;
-  gap: 1rem;
+/* Center the title container */
+.navbar-title-container {
+  flex: 1; 
+  display: flex; 
+  justify-content: center; 
+  background-color: rgba(31, 31, 31, 0.8); 
+  padding: 5px 15px; 
+  border-radius: 5px; 
+  max-width: 200px; 
 }
 
-.nav-item {
-  text-decoration: none;
-  background-color: #28a745; /* Green background */
-  color: #fff; /* White text */
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-}
-
-/* Hover effect for navbar items */
-.nav-item:hover {
-  background-color: #218838; /* Darker green on hover */
+.navbar-title {
+  color: #ec7a1d; 
+  font-size: 2rem; 
+  font-weight: bold; 
+  font-family: 'Oswald', sans-serif; 
+  letter-spacing: 1px; 
 }
 
 /* Specific styles for the login button */
 .login-button {
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 4px; 
   background-color: #283199;
   color: #ffffff; 
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  text-decoration: none;
+  font-size: 1rem; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: background-color 0.3s; 
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color: #284e99; 
 }
+
 
 /* Content area that takes up the remaining space */
 .content {
   display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  justify-content: center; 
+  align-items: flex-start; 
+  padding: 20px;
+  min-height: 80vh; 
+  overflow: auto; 
 }
 
 /* Footer styles */

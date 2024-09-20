@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Modal from './components/LoginModal';
 import auth from './utils/auth';
 
-const Navbar = ({ setImage, setText }) => {
+const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -29,18 +28,15 @@ const Navbar = ({ setImage, setText }) => {
     auth.logout();
   };
 
+
   return (
-    <nav className="navbar bg-dark">
-      <div className="container">
-        <Link className="navbar-brand text-white" to="/">Lost Lands</Link>
-        <div className="navbar-nav">
-          {isAuthenticated ? (
-            <button className="nav-item nav-link login-button" onClick={handleLogout}>Log Out</button>
-          ) : (
-            <Link className="nav-item nav-link login-button" to="#" onClick={handleLoginClick}>Login</Link>
-          )}
-        </div>
+    <nav className="navbar">
+      <div className="navbar-title-container">
+        <div className="navbar-title">Lost Lands</div>
       </div>
+      <button className="login-button" onClick={isAuthenticated ? handleLogout : handleLoginClick}>
+        {isAuthenticated ? 'Log Out' : 'Login'}
+      </button>
       <Modal show={showModal} onClose={handleCloseModal} />
     </nav>
   );

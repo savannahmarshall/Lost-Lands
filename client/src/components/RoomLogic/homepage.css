@@ -1,0 +1,47 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  height: 100vh; 
+  text-align: center; 
+  padding: 20px; 
+}
+
+.homepage-image {
+  max-width: 40%; 
+  height: auto; 
+  margin-bottom: 20px; 
+}
+
+.text-box {
+  background-color: rgba(19, 43, 19, 0.8); 
+  padding: 20px; 
+  border-radius: 10px; 
+  color: #fff; 
+  max-width: 80%; 
+}
+
+.homepage h1 {
+  margin: 0; 
+  padding: 10px; 
+  font-size: 3rem; 
+  color: rgba(217, 213, 213, 0.8);
+  font-weight: bold; 
+}
+
+.homepage p {
+  margin: 0; 
+  padding: 10px; 
+  font-size: 1.5rem; 
+  color: inherit; 
+  color: rgba(217, 213, 213, 0.8);
+  font-weight: bold; 
+}
+
+body {
+  margin: 0;
+  background: url('/assets/homepage.jpg') no-repeat center center fixed; 
+  background-size: cover; 
+  font-family: 'Arial', sans-serif; 
+}

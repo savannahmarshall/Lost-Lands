@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AuthService from '../utils/auth';
 import Navbar from '../Navbar';
 import Room1 from '../components/RoomLogic/room1';
 import Room2 from '../components/RoomLogic/room2';
@@ -9,6 +10,7 @@ import Room6 from '../components/RoomLogic/room6';
 import Room7 from '../components/RoomLogic/room7';
 import Room8 from '../components/RoomLogic/room8';
 import Room9 from '../components/RoomLogic/room9';
+
 
 const roomComponents = {
   1: Room1,
@@ -25,15 +27,18 @@ const roomComponents = {
 const Home = () => {
   const [currentRoom, setCurrentRoom] = useState(0); 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userData, setUserData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); 
 
   // Check for authentication token
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = AuthService.getToken()
     if (token) {
       setIsAuthenticated(true);
     }
+    console.log(token)
   }, []);
+  
   
   // After user logins in and is authenicated, render room 1
   useEffect(() => {

@@ -18,7 +18,8 @@ const resolvers = {
     createUser: async (parent, { username, password }) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({ username, password: hashedPassword });
-      return user;
+      const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+      return { token, user };
     },
     login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });

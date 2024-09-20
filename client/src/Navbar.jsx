@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from './components/LoginModal';
+import auth from './utils/auth';
 
 const Navbar = ({ setImage, setText }) => {
   const [showModal, setShowModal] = useState(false);
@@ -8,8 +9,8 @@ const Navbar = ({ setImage, setText }) => {
 
   useEffect(() => {
     // Check if the user is authenticated by checking the presence of a token in localStorage
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
+    const token = localStorage.getItem('id_token');
+    setIsAuthenticated(token ? true : false);
   }, []);
 
   const handleLoginClick = () => {
@@ -19,13 +20,13 @@ const Navbar = ({ setImage, setText }) => {
   const handleCloseModal = () => {
     setShowModal(false);
     // Update authentication status after closing the modal
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
+    const token = localStorage.getItem('id_token');
+    setIsAuthenticated(token ? true : false);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
     setIsAuthenticated(false);
+    auth.logout();
   };
 
   return (

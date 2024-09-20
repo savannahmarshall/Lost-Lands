@@ -1,16 +1,17 @@
-/* Ensure the body, html, and root elements take up the full height */
-body, html, #root {
-  height: 100%;
+/* global.css */
+
+body {
   margin: 0;
-  background-color: #000000; 
-  color: #ffffff; 
+  background-color: #000; 
+  color: #fff; 
+  font-family: 'Arial', sans-serif;
 }
 
 /* Navbar styles */
 .navbar {
   flex-shrink: 0;
   padding: 1rem;
-  background-color: #1f1f1f; 
+  background-color: #1f1f1f; /* Dark gray background for navbar */
 }
 
 .navbar .container {
@@ -26,8 +27,15 @@ body, html, #root {
 
 .nav-item {
   text-decoration: none;
-  background-color: green;
-  color: #ffffff; 
+  background-color: #28a745; /* Green background */
+  color: #fff; /* White text */
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+/* Hover effect for navbar items */
+.nav-item:hover {
+  background-color: #218838; /* Darker green on hover */
 }
 
 /* Specific styles for the login button */
@@ -47,6 +55,8 @@ body, html, #root {
 .content {
   display: flex;
   flex-grow: 1;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -63,12 +73,12 @@ body, html, #root {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: green; 
-  color: #ffffff; 
+  background-color: #28a745; /* Green background for footer buttons */
+  color: #fff; 
   border: none;
   border-radius: 0.25rem;
 }
 
 .footer-button:hover {
-  background-color: #0f6969; 
+  background-color: #0f6969; /* Darker shade on hover */
 }

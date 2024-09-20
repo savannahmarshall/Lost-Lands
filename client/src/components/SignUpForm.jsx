@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
 import './LoginModal.css';
+import { CREATE_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
 
 const SignUpForm = ({ onSignUp }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const [createUser, {error}] = useMutation(CREATE_USER);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSignUp) {
-      onSignUp({ username, password });
+    if (username && password) {
+      try { 
+        const {data} = await createUser({
+          variables: {username, password}
+        })
+        console.log(data);
+        Auth.login(data.createUser.token)
+      } catch (err) {
+        console.error(err)
+      }
     } else {
       console.log('Sign Up:', { username, password });
     }

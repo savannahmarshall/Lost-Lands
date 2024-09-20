@@ -4,6 +4,7 @@ import './LoginModal.css';
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import { CREATE_USER, LOGIN_USER } from '../utils/mutations';
+import auth from '../utils/auth';
 
 const Modal = ({ show, onClose }) => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -30,7 +31,7 @@ const Modal = ({ show, onClose }) => {
       });
 
       console.log('User logged in:', data.login.user);
-      localStorage.setItem('token', data.login.token);
+      auth.login(data.login.token);
       onClose(); 
     } catch (error) {
       console.error('Error during login:', error);

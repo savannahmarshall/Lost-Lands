@@ -66,13 +66,13 @@ const Home = () => {
       <>
         {!isFirstRoom && isAuthenticated && (
           <button className="footer-button" onClick={() => handleDirection('backward')}>
-            Backward
+            Turn Back
           </button>
         )}
         {isAuthenticated && (
           <>
             <button className="footer-button" onClick={() => setIsModalOpen(true)}>
-              Challenge
+              Unlock the Treasure
             </button>
             <button 
               className="inventory-icon" 
@@ -83,7 +83,7 @@ const Home = () => {
         )}
         {!isLastRoom && isAuthenticated && (
           <button className="footer-button" onClick={() => handleDirection('forward')}>
-            Forward
+            Keep Exploring
           </button>
         )}
       </>

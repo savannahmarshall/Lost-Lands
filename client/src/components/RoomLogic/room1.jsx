@@ -70,7 +70,7 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Select the correct option:</p>
+              <p>Solve the Riddle to Unlock an Item</p>
               <div>
                 {options.map(option => (
                   <button

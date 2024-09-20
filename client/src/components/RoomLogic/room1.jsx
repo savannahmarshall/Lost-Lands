@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import './room1.css';
 import './challengeModals.css';
 
-const Room1 = ({ show, onClose }) => {
+const Room1 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
     { id: 1, text: 'Option 1', isCorrect: false },
     { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true }, // the correct answer is here
+    { id: 3, text: 'Option 3', isCorrect: true },
     { id: 4, text: 'Option 4', isCorrect: false },
   ];
 
-  // Function to add an item to the inventory
   const addItem = async () => {
     const response = await fetch('/graphql', {
       method: 'POST',
@@ -30,14 +29,14 @@ const Room1 = ({ show, onClose }) => {
           }
         `,
         variables: {
-          name: 'Room 1 Item', // we can change this later, I just have it set to this to test and make sure data is going to mongo atlas
+          name: 'Room 1 Item',
           description: 'This is an item from Room 1',
         },
       }),
     });
 
     const result = await response.json();
-    console.log(result.data.addItem);
+    return result.data.addItem;
   };
 
   const handleOptionSelect = async (option) => {
@@ -45,7 +44,8 @@ const Room1 = ({ show, onClose }) => {
 
     if (option.isCorrect) {
       try {
-        await addItem();
+        const newItem = await addItem();
+        setInventory([...inventory, newItem]);
         setIsCorrect(true);
       } catch (error) {
         console.error('Error saving item:', error);
@@ -59,8 +59,7 @@ const Room1 = ({ show, onClose }) => {
   return (
     <div className="room-container">
       <div className="room-image">
-        {/* room 1 image will go here */}
-        <img src="/path to image goes here later" alt="Room 1 image alt text" />
+        <img src="/path-to-image.jpg" alt="Room 1" />
       </div>
       <div className="room-text">
         text for page one will go here later!

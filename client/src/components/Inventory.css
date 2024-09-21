@@ -1,3 +1,4 @@
+/* Inventory modal styles */
 .inventory-modal {
     position: fixed;
     top: 50%;
@@ -31,21 +32,42 @@
     border: none;
     font-size: 2rem;
     cursor: pointer;
-    color: #333;
+    color: #000;
   }
   
   .inventory-close:hover {
     color: #f00; 
   }
 
+/* Inventory icon styles */
+.inventory-icon {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 75px;
+  height: 75px;
+  background-image: url('/assets/inventory2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Inventory icon hover effect */
+.inventory-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.8; 
+  transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+/* Media query for icon on smaller screens */
+@media (max-width: 600px) {
   .inventory-icon {
-    width: 75px; 
-    height: 75px;
-    background-image: url('/assets/inventory2.png'); 
-    background-size: contain; 
-    background-repeat: no-repeat; 
-    background-color: #1f1f1f;  
-    border: none; 
-    cursor: pointer; 
-    display: inline-block; 
+    width: 50px;
+    height: 50px;
+    bottom: 5px;
+    right: 5px;
   }
+}

@@ -7,10 +7,10 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Portal', isCorrect: false },
+    { id: 2, text: 'Teleportation', isCorrect: true },
+    { id: 3, text: 'Gateway', isCorrect: false },
+    { id: 4, text: 'Wormhole', isCorrect: false },
   ];
 
   const addItem = async () => {
@@ -29,8 +29,8 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 5 Item', 
-          description: 'This is an item from Room 5', 
+          name: 'Teleportation Staff', 
+          description: 'An ancient staff charged with magical energy, it shimmers with swirling runes. With this staff, one can traverse vast distances in the blink of an eye, uncovering hidden realms and escaping danger.', 
         },
       }),
     });
@@ -57,12 +57,14 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
-        <img src="/path-to-room5-image.jpg" alt="Room 5" /> 
+    <div className="room-container5">
+      <h1 className="room-header2">Cascade of Wisdom</h1>
+      <div className="room-image5">
+        <img src="/assets/room-5.png" alt="Room 5" /> 
       </div>
-      <div className="room-text">
-        Text for Room 5 will go here later!
+      <div className="room-text5">
+      You take the ancient coin and toss it into the crystal-clear water. In an instant, the surface of the waterfall ripples and swirls, revealing a mystical figure: a wise wizard clad in flowing robes adorned with stars.
+      “I see you’ve come far on your journey,” he states. “I want to aid you in your quest. But first, you must answer this riddle.”
       </div>
 
       {show && (
@@ -70,7 +72,10 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>“I move you swiftly without a trace,
+                From one point to another in a single embrace.
+                No paths to follow, no steps to take,
+                What am I, in a world where boundaries break?”</p>
               <div>
                 {options.map(option => (
                   <button

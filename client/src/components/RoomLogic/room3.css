@@ -1,0 +1,39 @@
+/* Room 3 Styles */
+.room-container3 {
+    background-color: black;
+    color: #7709d6; 
+    text-align: center; 
+    padding: 40px;
+    min-height: calc(100vh - 70px); 
+    display: flex;  
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.room-header3 {
+    font-size: 2rem; 
+    margin-bottom: 20px; 
+    font-family: 'Georgia', serif; 
+}
+
+.room-image3 {
+    margin: 20px auto; 
+    max-width: 80%; 
+}
+
+.room-image3 img {
+    width: 100%; 
+    height: auto; 
+}
+
+.room-text3 {
+    font-size: 1.5rem; 
+    line-height: 1.6;
+    padding: 20px; 
+    border-radius: 8px; 
+    width: 100%; 
+    max-width: 1200px; 
+}

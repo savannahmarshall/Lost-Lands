@@ -7,10 +7,10 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Crystal', isCorrect: true },
+    { id: 2, text: 'Rock', isCorrect: false },
+    { id: 3, text: 'Fossil', isCorrect: false },
+    { id: 4, text: 'Pearl', isCorrect: false },
   ];
 
   const addItem = async () => {
@@ -29,8 +29,8 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 3 Item',
-          description: 'This is an item from Room 3',
+          name: 'Amethyst Crystal',
+          description: 'A beautiful amethyst crystal that shimmers in the light, radiating a deep purple hue. Found in the depths of the cave, it is said to enhance intuition and bring peace.',
         },
       }),
     });
@@ -57,12 +57,13 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
-        <img src="/path-to-room3-image.jpg" alt="Room 3" />
+    <div className="room-container3">
+       <h1 className="room-header2">Amethyst Hollow</h1>
+      <div className="room-image3">
+        <img src="/assets/room-3.jpg" alt="Room 3" />
       </div>
-      <div className="room-text">
-        Text for Room 3 will go here later!
+      <div className="room-text3">
+      As you step into the dark cave, the air feels cooler and the faint sound of dripping water echoes in the distance. The walls shimmer with a soft glow, revealing a series of ancient inscriptions etched into the stone. You move closer to read the riddle, illuminated by the light from your glowing mushroom. 
       </div>
 
       {show && (
@@ -70,7 +71,10 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>“I am born from stone, yet I dance in the light,
+                In darkness, I shimmer, a beautiful sight.
+                With stalactites above and stalagmites below,
+                What am I, in this cavern where secrets flow?”</p>
               <div>
                 {options.map(option => (
                   <button

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './room2.css'; // Update the CSS file to match Room 2
+import './room2.css';
 import './challengeModals.css';
 
 const Room2 = ({ show, onClose, inventory, setInventory }) => {
@@ -7,10 +7,10 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Lichen', isCorrect: false },
+    { id: 2, text: 'Mushroom', isCorrect: true },
+    { id: 3, text: 'Tree Root', isCorrect: false },
+    { id: 4, text: 'Moss', isCorrect: false },
   ];
 
   const addItem = async () => {
@@ -29,8 +29,8 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 2 Item', // Updated to 'Room 2 Item'
-          description: 'This is an item from Room 2', // Updated description for Room 2
+          name: 'Glowing Mushroom',
+          description: 'A rare mushroom with a vibrant glow-in-the-dark property, often cherished by adventurers for its ability to light the way in the darkest of places.',
         },
       }),
     });
@@ -57,12 +57,13 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
-        <img src="/path-to-room2-image.jpg" alt="Room 2" /> {/* Update the image path */}
+    <div className="room-container2">
+      <h1 className="room-header2">Mystic Mushroom Valley</h1>
+      <div className="room-image2">
+        <img src="/assets/room-2.jpg" alt="Room 2" />
       </div>
-      <div className="room-text">
-        Text for Room 2 will go here later!
+      <div className="room-text2">
+        <p>After passing through the enchanting fairy village, you find yourself in Mystic Mushroom Valley. The air is thick with the earthy scent of damp soil and vibrant fungi. As you venture deeper, a foreboding dark cave looms ahead, its entrance shadowed and menacing. You can’t navigate through without a light source. Just then, you notice a note partially sticking out from beneath a heavy door, beckoning you closer.</p>
       </div>
 
       {show && (
@@ -70,7 +71,11 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>"I sprout in the damp, I thrive in the shade,
+                I carry a cap, but no feet I display.
+                Some call me a fungus, others call me food,
+                But choose the wrong one, and you'll rue your mood.
+                What am I?"</p>
               <div>
                 {options.map(option => (
                   <button

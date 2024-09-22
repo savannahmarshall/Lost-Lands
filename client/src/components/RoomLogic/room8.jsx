@@ -7,10 +7,10 @@ const Room8 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Binoculars', isCorrect: false },
+    { id: 2, text: 'Telescope', isCorrect: true },
+    { id: 3, text: 'Spyglass', isCorrect: false },
+    { id: 4, text: 'Kaleidoscope', isCorrect: false },
   ];
 
   const addItem = async () => {
@@ -29,8 +29,8 @@ const Room8 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 8 Item', 
-          description: 'This is an item from Room 8', 
+          name: 'Celestial Lens', 
+          description: 'A beautifully crafted lens that enhances vision beyond the stars. It’s said to reveal secrets of the universe and can unlock hidden paths in the night sky.', 
         },
       }),
     });
@@ -57,11 +57,11 @@ const Room8 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
+    <div className="room-container8">
+      <div className="room-image8">
         <img src="/path-to-room8-image.jpg" alt="Room 8" /> 
       </div>
-      <div className="room-text">
+      <div className="room-text8">
         Text for Room 8 will go here later!
       </div>
 
@@ -70,7 +70,10 @@ const Room8 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>“High above the world, where dreams take flight,
+                I watch the heavens, a canvas of night.
+                With a lens to see the stars' twinkling grace,
+                What am I, in this celestial place?”</p>
               <div>
                 {options.map(option => (
                   <button

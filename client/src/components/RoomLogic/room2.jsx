@@ -21,21 +21,27 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
       },
       body: JSON.stringify({
         query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
+          mutation AddItem($name: String!, $description: String!, $image: String!) {
+            addItem(name: $name, description: $description, image: $image) {
               name
               description
+              image
             }
           }
         `,
         variables: {
           name: 'Glowing Mushroom',
           description: 'A rare mushroom with a vibrant glow-in-the-dark property, often cherished by adventurers for its ability to light the way in the darkest of places.',
+          image: '/assets/glowing-mushroom.png', 
         },
       }),
     });
-
+  
     const result = await response.json();
+    if (result.errors) {
+      console.error('GraphQL Errors:', result.errors);
+      throw new Error('Failed to add item'); 
+    }
     return result.data.addItem;
   };
 

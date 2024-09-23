@@ -33,8 +33,8 @@ const resolvers = {
       const token = jwt.sign({ userId: user._id }, JWT_SECRET);
       return { token, user };
     },
-    addItem: async (parent, { name, description }) => {
-      const newItem = new Item({ name, description });
+    addItem: async (parent, { name, description, image }) => {  // Accept image parameter
+      const newItem = new Item({ name, description, image });  // Include image in item creation
       await newItem.save();
       return newItem;
     },

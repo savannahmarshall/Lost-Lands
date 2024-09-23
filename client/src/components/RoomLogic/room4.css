@@ -1,7 +1,7 @@
 /* Room 4 Styles */
 .room-container4 {
     background-color: black;
-    color: #16ba2c; 
+    color: #89e595; 
     text-align: center; 
     padding: 40px;
     min-height: calc(100vh - 70px); 
@@ -11,12 +11,12 @@
     margin-bottom: 50px;
     max-width: 1200px;
     margin: 0 auto; 
+    font-family: 'Georgia', serif; 
 }
 
 .room-header4 {
-    font-size: 2rem; 
+    font-size: 2.2rem; 
     margin-bottom: 20px; 
-    font-family: 'Georgia', serif; 
 }
 
 .room-image4 {

@@ -25,12 +25,14 @@ const Room8 = ({ show, onClose, inventory, setInventory }) => {
             addItem(name: $name, description: $description) {
               name
               description
+              image
             }
           }
         `,
         variables: {
           name: 'Celestial Lens', 
           description: 'A beautifully crafted lens that enhances vision beyond the stars. It’s said to reveal secrets of the universe and can unlock hidden paths in the night sky.', 
+          image: '/assets/.png',  
         },
       }),
     });

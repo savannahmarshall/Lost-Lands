@@ -21,16 +21,18 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
       },
       body: JSON.stringify({
         query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
+          mutation AddItem($name: String!, $description: String!, $image: String!) {
+            addItem(name: $name, description: $description, image: $image) {
               name
               description
+              image
             }
           }
         `,
         variables: {
-          name: 'Room 9 Item', 
-          description: 'This is an item from Room 9', 
+          name: 'New Horizons Map', 
+          description: 'This detailed map uncovers hidden pathways and ancient routes, revealing new territories and treasures waiting to be discovered.', 
+          image: '/assets/map-icon.png',
         },
       }),
     });
@@ -59,10 +61,10 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
   return (
     <div className="room-container9">
       <div className="room-image9">
-        <img src="/path-to-room9-image.jpg" alt="Room 9" />
+        <img src="/assets/room-9.jpg" alt="Room 9" />
       </div>
       <div className="room-text9">
-        Text for Room 9 will go here later!
+        You have solved the final riddle and found the map! This map shows you new horizons, meaning you can travel to many more places.
       </div>
 
       {show && (

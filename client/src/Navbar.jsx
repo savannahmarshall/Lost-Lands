@@ -36,6 +36,10 @@ const Navbar = () => {
     setShowInstructionsModal(false); 
   };
 
+  const handleDonationsClick = () => {
+    alert('Thank you for considering a donation!'); // Or redirect to your donation page
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-title-container">
@@ -43,7 +47,10 @@ const Navbar = () => {
       </div>
       <div className="button-container">
         <button className="instructions-button" onClick={handleInstructionsClick}>
-          Game Instructions
+          Guide
+        </button>
+        <button className="donations-button" onClick={handleDonationsClick}>
+          Donate
         </button>
         <button className="login-button" onClick={isAuthenticated ? handleLogout : handleLoginClick}>
           {isAuthenticated ? 'Log Out' : 'Login'}

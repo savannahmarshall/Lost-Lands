@@ -21,21 +21,26 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
       },
       body: JSON.stringify({
         query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
+          mutation AddItem($name: String!, $description: String!, $image: String!) {
+            addItem(name: $name, description: $description, image: $image) {
               name
               description
+              image
             }
           }
         `,
         variables: {
           name: 'Amethyst Crystal',
           description: 'A beautiful amethyst crystal that shimmers in the light, radiating a deep purple hue. Found in the depths of the cave, it is said to enhance intuition and bring peace.',
+          image: '/assets/Amethyst-crystal.png',
         },
       }),
     });
-
+  
     const result = await response.json();
+    if (result.errors) {
+      throw new Error(result.errors[0].message);
+    }
     return result.data.addItem;
   };
 

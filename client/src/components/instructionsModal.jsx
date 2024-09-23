@@ -1,5 +1,5 @@
 import React from 'react';
-import './RoomLogic/challengeModals.css';
+import './instructions.css';
 
 const InstructionsModal = ({ show, onClose }) => {
   if (!show) return null;

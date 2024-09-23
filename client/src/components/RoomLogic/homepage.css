@@ -6,6 +6,7 @@
   height: 100vh; 
   text-align: center; 
   padding: 20px; 
+  font-family: 'Georgia', serif; 
 }
 
 .homepage-image {
@@ -28,6 +29,7 @@
   font-size: 3rem; 
   color: rgba(217, 213, 213, 0.8);
   font-weight: bold; 
+  
 }
 
 .homepage p {

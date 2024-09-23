@@ -9,6 +9,7 @@ const typeDefs = `
     _id: ID!
     name: String!
     description: String!
+     image: String! 
   }
 
   type AuthPayload {
@@ -24,7 +25,7 @@ const typeDefs = `
   type Mutation {
     createUser(username: String!, password: String!): AuthPayload
     login(username: String!, password: String!): AuthPayload
-    addItem(name: String!, description: String!): Item  # Mutation to add an item
+    addItem(name: String!, description: String!, image: String!): Item  # Update to include image
   }
 `;
 

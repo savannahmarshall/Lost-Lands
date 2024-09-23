@@ -43,7 +43,7 @@ html, body {
   color: #ed4006;
   font-size: 2rem;
   font-weight: bold;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Georgia', serif; 
   letter-spacing: 1px;
 }
 
@@ -65,6 +65,46 @@ html, body {
 .login-button:hover {
   background-color: #284e99;
 }
+/* Instructions Button Styles */
+.instructions-button {
+  padding: 15px 30px; 
+  border: none; 
+  border-radius: 6px; 
+  background-color: #4a773c; /* Dark green */
+  color: #ffffff; 
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.2s; 
+  white-space: nowrap;
+  margin-left: 15px; 
+}
+
+.instructions-button:hover {
+  background-color: #3c6530; /* Darker green */
+}
+
+
+
+ /* Donations Button Styles*/
+.donations-button {
+  padding: 15px 30px; 
+  border: none; 
+  border-radius: 6px; 
+  background-color: #a03d1c; 
+  color: #ffffff; 
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: background-color 0.2s; 
+  white-space: nowrap;
+  margin-left: 15px; 
+}
+
+.donations-button:hover {
+  background-color: #862311; /* Darker, richer red */
+}
+
 
 /* Adjust the content to leave space for the fixed navbar */
 .content {
@@ -148,6 +188,7 @@ html, body {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
   transform: translateY(1px);
 }
+
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {

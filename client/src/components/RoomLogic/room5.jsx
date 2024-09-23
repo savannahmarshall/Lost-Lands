@@ -14,29 +14,42 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
   ];
 
   const addItem = async () => {
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
-              name
-              description
-            }
-          }
-        `,
-        variables: {
-          name: 'Teleportation Staff', 
-          description: 'An ancient staff charged with magical energy, it shimmers with swirling runes. With this staff, one can traverse vast distances in the blink of an eye, uncovering hidden realms and escaping danger.', 
+    try {
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }),
-    });
+        body: JSON.stringify({
+          query: `
+            mutation AddItem($name: String!, $description: String!, $image: String!) {
+              addItem(name: $name, description: $description, image: $image) {
+                name
+                description
+                image
+              }
+            }
+          `,
+          variables: {
+            name: 'Teleportation Staff', 
+            description: 'An ancient staff charged with magical energy, it shimmers with swirling runes. With this staff, one can traverse vast distances in the blink of an eye, uncovering hidden realms and escaping danger.', 
+            image: '/assets/staff-icon.png',  
+          },
+        }),
+      });
 
-    const result = await response.json();
-    return result.data.addItem;
+      const result = await response.json();
+      console.log(result);
+
+      if (!result.data || !result.data.addItem) {
+        throw new Error('Item could not be added. Check GraphQL response.');
+      }
+
+      return result.data.addItem;
+    } catch (error) {
+      console.error('Error adding item:', error);
+      throw error;
+    }
   };
 
   const handleOptionSelect = async (option) => {
@@ -63,8 +76,8 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
         <img src="/assets/room-5.png" alt="Room 5" /> 
       </div>
       <div className="room-text5">
-      You take the ancient coin and toss it into the crystal-clear water. In an instant, the surface of the waterfall ripples and swirls, revealing a mystical figure: a wise wizard clad in flowing robes adorned with stars.
-      “I see you’ve come far on your journey,” he states. “I want to aid you in your quest. But first, you must answer this riddle.”
+        You take the ancient coin and toss it into the crystal-clear water. In an instant, the surface of the waterfall ripples and swirls, revealing a mystical figure: a wise wizard clad in flowing robes adorned with stars.
+        “I see you’ve come far on your journey,” he states. “I want to aid you in your quest. But first, you must answer this riddle.”
       </div>
 
       {show && (

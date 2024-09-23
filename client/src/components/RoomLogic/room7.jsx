@@ -14,29 +14,42 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
   ];
 
   const addItem = async () => {
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
-              name
-              description
-            }
-          }
-        `,
-        variables: {
-          name: 'Ice Climbing Gear', 
-          description: ' A set of sturdy equipment designed to grip icy surfaces, essential for traversing the treacherous glacier. With this gear, you can navigate the frozen landscape and escape the frigid embrace of the ice.', 
+    try {
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }),
-    });
+        body: JSON.stringify({
+          query: `
+            mutation AddItem($name: String!, $description: String!, $image: String!) {
+              addItem(name: $name, description: $description, image: $image) {
+                name
+                description
+                image
+              }
+            }
+          `,
+          variables: {
+            name: 'Ice Climbing Gear', 
+            description: 'A set of sturdy equipment designed to grip icy surfaces, essential for traversing the treacherous glacier. With this gear, you can navigate the frozen landscape and escape the frigid embrace of the ice.', 
+            image: '/assets/ice-axe.png',  
+          },
+        }),
+      });
 
-    const result = await response.json();
-    return result.data.addItem;
+      const result = await response.json();
+      console.log(result);
+
+      if (!result.data || !result.data.addItem) {
+        throw new Error('Item could not be added. Check GraphQL response.');
+      }
+
+      return result.data.addItem;
+    } catch (error) {
+      console.error('Error adding item:', error);
+      throw error;
+    }
   };
 
   const handleOptionSelect = async (option) => {
@@ -58,7 +71,7 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
 
   return (
     <div className="room-container7">
-       <h1 className="room-header2">Ice-Capade</h1>
+      <h1 className="room-header2">Ice-Capade</h1>
       <div className="room-image7">
         <img src="/assets/room-7.jpg" alt="Room 7" /> 
       </div>

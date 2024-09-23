@@ -63,6 +63,12 @@ const Home = () => {
     setCurrentRoom(1); 
   };
 
+  const handleRemove = (index) => {
+    const newInventory = [...inventory];
+    newInventory.splice(index, 1); 
+    setInventory(newInventory);
+  };
+
   const renderDirectionButtons = () => {
     const isFirstRoom = currentRoom === 1;
     const isLastRoom = currentRoom === 9;
@@ -128,6 +134,7 @@ const Home = () => {
           isOpen={isInventoryModalOpen}
           onClose={() => setInventoryModalOpen(false)}
           items={inventory} 
+          onRemove={handleRemove}
         />
       )}
     </div>

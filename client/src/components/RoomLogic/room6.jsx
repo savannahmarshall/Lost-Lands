@@ -14,29 +14,42 @@ const Room6 = ({ show, onClose, inventory, setInventory }) => {
   ];
 
   const addItem = async () => {
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
-              name
-              description
-            }
-          }
-        `,
-        variables: {
-          name: 'Enchanted Lily Bell',
-          description: 'A delicate bloom from the enchanted forest, these bell-shaped flowers are said to bring good fortune and protection to those who carry them. Their sweet fragrance can soothe weary souls and is often used in potions for healing.', 
+    try {
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }),
-    });
+        body: JSON.stringify({
+          query: `
+            mutation AddItem($name: String!, $description: String!, $image: String!) {
+              addItem(name: $name, description: $description, image: $image) {
+                name
+                description
+                image
+              }
+            }
+          `,
+          variables: {
+            name: 'Enchanted Lily Bell',
+            description: 'A delicate bloom from the enchanted forest, these bell-shaped flowers are said to bring good fortune and protection to those who carry them. Their sweet fragrance can soothe weary souls and is often used in potions for healing.', 
+            image: '/assets/lily-icon.png',  
+          },
+        }),
+      });
 
-    const result = await response.json();
-    return result.data.addItem;
+      const result = await response.json();
+      console.log(result);
+
+      if (!result.data || !result.data.addItem) {
+        throw new Error('Item could not be added. Check GraphQL response.');
+      }
+
+      return result.data.addItem;
+    } catch (error) {
+      console.error('Error adding item:', error);
+      throw error;
+    }
   };
 
   const handleOptionSelect = async (option) => {

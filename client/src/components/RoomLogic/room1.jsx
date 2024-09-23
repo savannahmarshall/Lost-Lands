@@ -58,12 +58,17 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
 
   return (
     <div className="room1-container">
-       <h1 className="room-header2">Room 1 Name goes here</h1>
+      <h1 className='room-title'>Lavenderlight Lair</h1>
       <div className="room1-image">
-        <img src="/path-to-image.jpg" alt="Room 1" />
+        {/* room 1 image will go here */}
+        <img src="https://static.vecteezy.com/system/resources/previews/022/712/809/large_2x/a-beautiful-fairytale-enchanted-forest-at-night-made-of-glittering-crystals-with-trees-and-colorful-vegetation-generate-ai-free-photo.jpg" />
       </div>
       <div className="room1-text">
-        text for page one will go here later!
+      At the edge of Lavenderlight Lair, faint purple light flickers through twisted trees. 
+      The Noctraen Fae guard this dark forest, their magic woven into its shadows.
+      Ahead, an archway leads deeper, but four glowing stones block your path. A whisper fills the air: 
+      "Choose the stone that blooms in shadow.
+Three deceive, one is true." Choose wrong, and the forest will claim you forever. Choose right, and the way forward will open.
       </div>
 
       {show && (

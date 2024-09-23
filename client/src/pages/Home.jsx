@@ -10,7 +10,8 @@ import Room6 from '../components/RoomLogic/room6';
 import Room7 from '../components/RoomLogic/room7';
 import Room8 from '../components/RoomLogic/room8';
 import Room9 from '../components/RoomLogic/room9';
-
+import Inventory from '../components/Inventory';
+import Homepage from '../components/RoomLogic/homepage';
 
 const roomComponents = {
   1: Room1,
@@ -25,41 +26,41 @@ const roomComponents = {
 };
 
 const Home = () => {
-  const [currentRoom, setCurrentRoom] = useState(0); 
+  const [currentRoom, setCurrentRoom] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInventoryModalOpen, setInventoryModalOpen] = useState(false);
+  const [inventory, setInventory] = useState([]);
 
-  // Check for authentication token
   useEffect(() => {
-    const token = AuthService.getToken()
+    const token = AuthService.getToken();
     if (token) {
       setIsAuthenticated(true);
     }
-    console.log(token)
   }, []);
   
-  
-  // After user logins in and is authenicated, render room 1
   useEffect(() => {
     if (isAuthenticated) {
       setCurrentRoom(1);
-  
     }
   }, [isAuthenticated]);
 
-
   const handleDirection = (direction) => {
     let nextRoom = null;
-    if (direction === 'west') {
+    if (direction === 'backward') { 
       nextRoom = currentRoom > 1 ? currentRoom - 1 : null;
-    } else if (direction === 'east') {
+    } else if (direction === 'forward') {
       nextRoom = currentRoom < 9 ? currentRoom + 1 : null;
     }
 
     if (nextRoom) {
       setCurrentRoom(nextRoom);
     }
+  };
+
+  const handleReset = () => {
+    setInventory([]); 
+    setCurrentRoom(1); 
   };
 
   const renderDirectionButtons = () => {
@@ -69,37 +70,66 @@ const Home = () => {
     return (
       <>
         {!isFirstRoom && isAuthenticated && (
-          <button className="footer-button" onClick={() => handleDirection('west')}>
-            Previous Room
+          <button className="footer-button" onClick={() => handleDirection('backward')}>
+            Turn Back
           </button>
         )}
         {isAuthenticated && (
-          <button className="footer-button" onClick={() => setIsModalOpen(true)}> 
-            Challenge
-          </button>
+          <>
+            <button className="footer-button" onClick={() => setIsModalOpen(true)}>
+              Unlock the Treasure
+            </button>
+            <button 
+              className="inventory-icon" 
+              onClick={() => setInventoryModalOpen(true)} 
+              aria-label="Open Inventory"
+            />
+            {isLastRoom && (
+              <button className="footer-button reset-button" onClick={handleReset}>
+                Reset Adventure
+              </button>
+            )}
+          </>
         )}
         {!isLastRoom && isAuthenticated && (
-          <button className="footer-button" onClick={() => handleDirection('east')}>
-            Next Room
+          <button className="footer-button" onClick={() => handleDirection('forward')}>
+            Keep Exploring
           </button>
         )}
       </>
     );
   };
 
-  // Renders the current room component based on currentRoom state
   const CurrentRoomComponent = roomComponents[currentRoom];
 
   return (
     <div className="container">
       <Navbar />
       <div className="content">
-        {}
-        {CurrentRoomComponent && <CurrentRoomComponent show={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+        {isAuthenticated ? (
+          CurrentRoomComponent && (
+            <CurrentRoomComponent
+              show={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              inventory={inventory}
+              setInventory={setInventory}
+            />
+          )
+        ) : (
+          <Homepage /> 
+        )}
       </div>
       <footer className="footer">
-        {renderDirectionButtons()}
+        {isAuthenticated && renderDirectionButtons()}
       </footer>
+
+      {isInventoryModalOpen && (
+        <Inventory
+          isOpen={isInventoryModalOpen}
+          onClose={() => setInventoryModalOpen(false)}
+          items={inventory} 
+        />
+      )}
     </div>
   );
 };

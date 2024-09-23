@@ -6,24 +6,30 @@
   text-align: center;
 }
 
-.room-container {
+.room1-container {
+  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 50%;
   color: #fff; /* White txt */
   font-family: "Pixelify Sans", sans-serif;
 }
 
-.room-image img {
-  width: 100%; 
-  max-width: 600px; 
-  height: auto;
-  margin-bottom: 20px;
+.room1-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
 }
 
-.room-text {
+.room1-image img {
+  max-width: 80%;
+  height: auto;
+}
+
+.room1-text {
   margin-bottom: 30px;
   font-size: 18px;
   text-align: center;

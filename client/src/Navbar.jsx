@@ -1,25 +1,24 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Modal from './components/LoginModal';
+import LoginModal from './components/LoginModal';
+import InstructionsModal from './components/InstructionsModal'; 
 import auth from './utils/auth';
 
-const Navbar = ({ setImage, setText }) => {
-  const [showModal, setShowModal] = useState(false);
+const Navbar = () => {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showInstructionsModal, setShowInstructionsModal] = useState(false); 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check if the user is authenticated by checking the presence of a token in localStorage
     const token = localStorage.getItem('id_token');
     setIsAuthenticated(token ? true : false);
   }, []);
 
   const handleLoginClick = () => {
-    setShowModal(true);
+    setShowLoginModal(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    // Update authentication status after closing the modal
+  const handleCloseLoginModal = () => {
+    setShowLoginModal(false);
     const token = localStorage.getItem('id_token');
     setIsAuthenticated(token ? true : false);
   };
@@ -29,19 +28,29 @@ const Navbar = ({ setImage, setText }) => {
     auth.logout();
   };
 
+  const handleInstructionsClick = () => {
+    setShowInstructionsModal(true); 
+  };
+
+  const handleCloseInstructionsModal = () => {
+    setShowInstructionsModal(false); 
+  };
+
   return (
-    <nav className="navbar bg-dark">
-      <div className="container">
-        <Link className="navbar-brand text-white" to="/">Lost Lands</Link>
-        <div className="navbar-nav">
-          {isAuthenticated ? (
-            <button className="nav-item nav-link login-button" onClick={handleLogout}>Log Out</button>
-          ) : (
-            <Link className="nav-item nav-link login-button" to="#" onClick={handleLoginClick}>Login</Link>
-          )}
-        </div>
+    <nav className="navbar">
+      <div className="navbar-title-container">
+        <div className="navbar-title">Lost Lands</div>
       </div>
-      <Modal show={showModal} onClose={handleCloseModal} />
+      <div className="button-container">
+        <button className="instructions-button" onClick={handleInstructionsClick}>
+          Game Instructions
+        </button>
+        <button className="login-button" onClick={isAuthenticated ? handleLogout : handleLoginClick}>
+          {isAuthenticated ? 'Log Out' : 'Login'}
+        </button>
+      </div>
+      <LoginModal show={showLoginModal} onClose={handleCloseLoginModal} />
+      <InstructionsModal show={showInstructionsModal} onClose={handleCloseInstructionsModal} />
     </nav>
   );
 };

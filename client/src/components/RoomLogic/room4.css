@@ -1,0 +1,39 @@
+/* Room 4 Styles */
+.room-container4 {
+    background-color: black;
+    color: #16ba2c; 
+    text-align: center; 
+    padding: 40px;
+    min-height: calc(100vh - 70px); 
+    display: flex;  
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.room-header4 {
+    font-size: 2rem; 
+    margin-bottom: 20px; 
+    font-family: 'Georgia', serif; 
+}
+
+.room-image4 {
+    margin: 20px auto; 
+    max-width: 80%; 
+}
+
+.room-image4 img {
+    width: 60%; 
+    height: auto; 
+}
+
+.room-text4 {
+    font-size: 1.3rem; 
+    line-height: 1.6;
+    padding: 20px; 
+    border-radius: 8px; 
+    width: 100%; 
+    max-width: 1400px; 
+}

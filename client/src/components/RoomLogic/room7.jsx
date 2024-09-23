@@ -7,10 +7,10 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Icicle', isCorrect: false },
+    { id: 2, text: 'Frost', isCorrect: false },
+    { id: 3, text: 'Hail', isCorrect: false },
+    { id: 4, text: 'Snowflake', isCorrect: true },
   ];
 
   const addItem = async () => {
@@ -29,8 +29,8 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 7 Item', 
-          description: 'This is an item from Room 7', 
+          name: 'Ice Climbing Gear', 
+          description: ' A set of sturdy equipment designed to grip icy surfaces, essential for traversing the treacherous glacier. With this gear, you can navigate the frozen landscape and escape the frigid embrace of the ice.', 
         },
       }),
     });
@@ -57,11 +57,12 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
-        <img src="/path-to-room7-image.jpg" alt="Room 7" /> 
+    <div className="room-container7">
+       <h1 className="room-header2">Ice-Capade</h1>
+      <div className="room-image7">
+        <img src="/assets/room-7.jpg" alt="Room 7" /> 
       </div>
-      <div className="room-text">
+      <div className="room-text7">
         Text for Room 7 will go here later!
       </div>
 
@@ -70,7 +71,11 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>“I fall from the heavens, a whisper of white,
+                Delicate dancer in the cold winter night.
+                Each one is unique, a wonder to see,
+                Blanketing the world in soft, sparkling glee.
+                What am I, a fleeting beauty of frost's gentle might?”</p>
               <div>
                 {options.map(option => (
                   <button

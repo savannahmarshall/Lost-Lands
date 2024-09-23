@@ -7,10 +7,10 @@ const Room6 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Foxglove', isCorrect: false },
+    { id: 2, text: 'Bluebell', isCorrect: false },
+    { id: 3, text: 'Lily of the Valley', isCorrect: true },
+    { id: 4, text: 'Jasmine', isCorrect: false },
   ];
 
   const addItem = async () => {
@@ -29,8 +29,8 @@ const Room6 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 6 Item',
-          description: 'This is an item from Room 6', 
+          name: 'Enchanted Lily Bell',
+          description: 'A delicate bloom from the enchanted forest, these bell-shaped flowers are said to bring good fortune and protection to those who carry them. Their sweet fragrance can soothe weary souls and is often used in potions for healing.', 
         },
       }),
     });
@@ -57,11 +57,12 @@ const Room6 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
-        <img src="/path-to-room6-image.jpg" alt="Room 6" />
+    <div className="room-container6">
+      <h1 className="room-header2">Enchanted Flora Grove</h1>
+      <div className="room-image6">
+        <img src="/assets/room-6.jpg" alt="Room 6" />
       </div>
-      <div className="room-text">
+      <div className="room-text6">
         Text for Room 6 will go here later!
       </div>
 
@@ -70,7 +71,10 @@ const Room6 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>“In hidden glades where fairies play,
+                I bloom in shadows, soft and gray.
+                With bell-shaped flowers, sweet and small,
+                What am I, cherished by all?”</p>
               <div>
                 {options.map(option => (
                   <button

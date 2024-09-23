@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
-.room-container {
+.room1-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,14 +11,14 @@
   font-family: "Pixelify Sans", sans-serif;
 }
 
-.room-image img {
+.room1-image img {
   width: 100%; 
   max-width: 600px; 
   height: auto;
   margin-bottom: 20px;
 }
 
-.room-text {
+.room1-text {
   margin-bottom: 30px;
   font-size: 18px;
   text-align: center;

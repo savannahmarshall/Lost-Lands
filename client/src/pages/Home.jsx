@@ -26,11 +26,11 @@ const roomComponents = {
 };
 
 const Home = () => {
-  const [currentRoom, setCurrentRoom] = useState(0); 
+  const [currentRoom, setCurrentRoom] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
-  const [isInventoryModalOpen, setInventoryModalOpen] = useState(false); 
-  const [inventory, setInventory] = useState([]); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInventoryModalOpen, setInventoryModalOpen] = useState(false);
+  const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
     const token = AuthService.getToken();
@@ -58,6 +58,11 @@ const Home = () => {
     }
   };
 
+  const handleReset = () => {
+    setInventory([]); 
+    setCurrentRoom(1); 
+  };
+
   const renderDirectionButtons = () => {
     const isFirstRoom = currentRoom === 1;
     const isLastRoom = currentRoom === 9;
@@ -79,6 +84,11 @@ const Home = () => {
               onClick={() => setInventoryModalOpen(true)} 
               aria-label="Open Inventory"
             />
+            {isLastRoom && (
+              <button className="footer-button reset-button" onClick={handleReset}>
+                Reset Adventure
+              </button>
+            )}
           </>
         )}
         {!isLastRoom && isAuthenticated && (

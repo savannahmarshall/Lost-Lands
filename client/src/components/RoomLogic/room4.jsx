@@ -7,10 +7,10 @@ const Room4 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Spring', isCorrect: false },
+    { id: 2, text: 'River', isCorrect: false },
+    { id: 3, text: 'Rain', isCorrect: false },
+    { id: 4, text: 'Waterfall', isCorrect: true },
   ];
 
   const addItem = async () => {
@@ -29,8 +29,8 @@ const Room4 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 4 Item', 
-          description: 'This is an item from Room 4',
+          name: 'Ancient Coin', 
+          description: 'A weathered coin that belonged to a traveler long ago, said to grant wishes when tossed into the water.',
         },
       }),
     });
@@ -57,12 +57,16 @@ const Room4 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
-        <img src="/path-to-room4-image.jpg" alt="Room 4" />
+    <div className="room-container4">
+      <h1 className="room-header2">Tranquility Falls</h1>
+      <div className="room-image4">
+        <img src="/assets/room-4.jpg" alt="Room 4" />
       </div>
-      <div className="room-text">
-        Text for Room 4 will go here later!
+      <div className="room-text4">
+      With the amethyst crystal in hand, you sense its power guiding you deeper into the cave. Following the sound of rushing water, you venture forward, knowing it will lead you to a hidden waterfall where peace awaits.
+
+      As you approach the waterfall, you notice a weathered stone pedestal partially covered in moss. Intrigued, you brush away the greenery to reveal a beautifully bound book resting on the pedestal. The first page explains that once the riddle is solved, the coins power is unlocked.
+
       </div>
 
       {show && (
@@ -70,7 +74,10 @@ const Room4 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>“I tumble down mountains with grace and might,
+                In pools and streams, I sparkle in light.
+                I sing a sweet song as I cascade free,
+                What am I, where nature's beauty you see?”</p>
               <div>
                 {options.map(option => (
                   <button

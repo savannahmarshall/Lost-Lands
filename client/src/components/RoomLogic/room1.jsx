@@ -57,11 +57,12 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
+    <div className="room1-container">
+       <h1 className="room-header2">Room 1 Name goes here</h1>
+      <div className="room1-image">
         <img src="/path-to-image.jpg" alt="Room 1" />
       </div>
-      <div className="room-text">
+      <div className="room1-text">
         text for page one will go here later!
       </div>
 
@@ -70,7 +71,7 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>Riddle goes here</p>
               <div>
                 {options.map(option => (
                   <button

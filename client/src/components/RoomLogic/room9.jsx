@@ -7,10 +7,10 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Globe', isCorrect: false },
+    { id: 2, text: 'Scroll', isCorrect: false },
+    { id: 3, text: 'Map', isCorrect: true },
+    { id: 4, text: 'Compass', isCorrect: false },
   ];
 
   const addItem = async () => {
@@ -57,11 +57,11 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
   };
 
   return (
-    <div className="room-container">
-      <div className="room-image">
+    <div className="room-container9">
+      <div className="room-image9">
         <img src="/path-to-room9-image.jpg" alt="Room 9" />
       </div>
-      <div className="room-text">
+      <div className="room-text9">
         Text for Room 9 will go here later!
       </div>
 
@@ -70,7 +70,10 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Solve the Riddle to Unlock an Item</p>
+              <p>“I’m drawn on parchment, with lines and signs,
+                Leading you forward through twists and climbs.
+                Though I cannot speak, my guidance is clear,
+                What am I, that shows you far and near?”</p>
               <div>
                 {options.map(option => (
                   <button

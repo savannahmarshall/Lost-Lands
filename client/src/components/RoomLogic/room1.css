@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
+.room-title {
+  font-size: 30px;
+  color: #9e28c5;
+  text-align: center;
+}
+
 .room-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #1a1a1a; /* Dark background */
   color: #fff; /* White txt */
   font-family: "Pixelify Sans", sans-serif;
 }
@@ -22,6 +27,6 @@
   margin-bottom: 30px;
   font-size: 18px;
   text-align: center;
-  color: #00ff00; /* green txt color */
+  color: #9e28c5; 
 }
 

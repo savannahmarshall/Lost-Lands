@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-title-container">
-        <div className="navbar-title">Lost Lands</div>
+        <div className="navbar-title">⋆｡ﾟ☁︎｡⋆Lost Lands｡ ﾟ☾ ﾟ｡⋆</div>
       </div>
       <div className="button-container">
         <button className="instructions-button" onClick={handleInstructionsClick}>

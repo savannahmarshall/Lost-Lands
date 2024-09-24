@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room9.css'; 
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room9 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -14,31 +15,40 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
   ];
 
   const addItem = async () => {
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-          mutation AddItem($name: String!, $description: String!, $image: String!) {
-            addItem(name: $name, description: $description, image: $image) {
-              name
-              description
-              image
-            }
-          }
-        `,
-        variables: {
-          name: 'New Horizons Map', 
-          description: 'This detailed map uncovers hidden pathways and ancient routes, revealing new territories and treasures waiting to be discovered.', 
-          image: '/assets/map-icon.png',
+    try {
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }),
-    });
+        body: JSON.stringify({
+          query: `
+            mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+              addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+                username
+              }
+            }
+          `,
+          variables: {
+            name: 'New Horizons Map', 
+            description: 'This detailed map uncovers hidden pathways and ancient routes, revealing new territories and treasures waiting to be discovered.', 
+            image: '/assets/map-icon.png', 
+            ObjectID: auth.getProfile().userId 
+          },
+        }),
+      });
 
-    const result = await response.json();
-    return result.data.addItem;
+      const result = await response.json();
+
+      if (!result.data || !result.data.addItem) {
+        throw new Error('Failed to add item. Please check the GraphQL response.');
+      }
+
+      return result.data.addItem;
+    } catch (error) {
+      console.error('Error adding item:', error);
+      throw error;
+    }
   };
 
   const handleOptionSelect = async (option) => {

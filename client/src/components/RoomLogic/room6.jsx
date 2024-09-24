@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room6.css'; 
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room6 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -22,18 +23,17 @@ const Room6 = ({ show, onClose, inventory, setInventory }) => {
         },
         body: JSON.stringify({
           query: `
-            mutation AddItem($name: String!, $description: String!, $image: String!) {
-              addItem(name: $name, description: $description, image: $image) {
-                name
-                description
-                image
+            mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+              addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+                username
               }
             }
           `,
           variables: {
             name: 'Enchanted Lily Bell',
             description: 'A delicate bloom from the enchanted forest, these bell-shaped flowers are said to bring good fortune and protection to those who carry them. Their sweet fragrance can soothe weary souls and is often used in potions for healing.', 
-            image: '/assets/lily-icon.png',  
+            image: '/assets/lily-icon.png', 
+            ObjectID: auth.getProfile().userId 
           },
         }),
       });

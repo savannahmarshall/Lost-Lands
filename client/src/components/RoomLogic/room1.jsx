@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room1.css';
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room1 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -9,7 +10,7 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
   const options = [
     { id: 1, text: 'Red Stone', isCorrect: false },
     { id: 2, text: 'Blue Stone', isCorrect: false },
-    { id: 3, text: 'Yellow Stone', isCorrect: true }, // correct answer goes here
+    { id: 3, text: 'Yellow Stone', isCorrect: true }, 
     { id: 4, text: 'Green Stone', isCorrect: false },
   ];
 
@@ -21,18 +22,17 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
       },
       body: JSON.stringify({
         query: `
-          mutation AddItem($name: String!, $description: String!, $image: String!) {
-            addItem(name: $name, description: $description, image: $image) {
-              name
-              description
-              image
+          mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+            addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+              username
             }
           }
         `,
         variables: {
           name: 'Yellow Stone',
-          description: 'The yellow stone glows warmly, casting a gentle light through the shadows. Its smooth surface hums with energy, offering a sense of calm and guidance, as if it knows the way forward',
+          description: 'The yellow stone glows warmly, casting a gentle light through the shadows. Its smooth surface hums with energy, offering a sense of calm and guidance, as if it knows the way forward.',
           image: '/assets/yellow-stone.png',
+          ObjectID: auth.getProfile().userId
         },
       }),
     });
@@ -66,7 +66,6 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
     <div className="room1-container">
       <h1 className='room-title'>Lavenderlight Lair</h1>
       <div className="room1-image">
-        {/* room 1 image will go here */}
         <img src="https://static.vecteezy.com/system/resources/previews/022/712/809/large_2x/a-beautiful-fairytale-enchanted-forest-at-night-made-of-glittering-crystals-with-trees-and-colorful-vegetation-generate-ai-free-photo.jpg" alt="Room 1" />
       </div>
       <div className="room1-text">

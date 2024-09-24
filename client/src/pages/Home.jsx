@@ -12,6 +12,7 @@ import Room8 from '../components/RoomLogic/room8';
 import Room9 from '../components/RoomLogic/room9';
 import Inventory from '../components/Inventory';
 import Homepage from '../components/RoomLogic/homepage';
+import auth from '../utils/auth';
 
 const roomComponents = {
   1: Room1,

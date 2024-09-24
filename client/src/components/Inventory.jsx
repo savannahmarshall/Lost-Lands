@@ -1,15 +1,49 @@
 import React from 'react';
 import './Inventory.css';
+import { useEffect, useState } from 'react';
+import auth from '../utils/auth';
 
 const Inventory = ({ isOpen, onClose, items, onRemove }) => {
+  useEffect( ()=> {
+    async function getUserData(){
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query QueryMe($userId: ID) {
+              queryMe(userId: $userId) {
+                inventory {
+                  name
+                  description
+                  image
+                }
+              }
+            }
+          `,
+          variables: {
+            userId: auth.getProfile().userId
+          },
+        }),
+      });
+      console.log(response)
+  
+    }
+    getUserData()
+  },[]) 
+ 
+
   return (
     isOpen && (
       <div className="inventory-modal">
         <div className="inventory-modal-content">
           <button className="inventory-close" onClick={onClose}>&times;</button>
-          <h2 className="inventory-title">Your Inventory</h2> {/* Corrected here */}
+          <h2 className="inventory-title">Your Inventory</h2>
           <div className="inventory-items-container">
             <ul>
+
               {items.length > 0 ? (
                 items.map((item, index) => (
                   <li key={index} className="inventory-item">

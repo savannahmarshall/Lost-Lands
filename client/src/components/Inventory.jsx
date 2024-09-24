@@ -1,12 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Inventory.css';
-import { useEffect, useState } from 'react';
 import auth from '../utils/auth';
 
-const Inventory = ({ isOpen, onClose, onRemove }) => {
-const [items, setItems] = useState({})
-  useEffect( ()=> {
-    async function getUserData(){
+const Inventory = ({ isOpen, onClose }) => {
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState(null); 
+
+  useEffect(() => {
+    async function getUserData() {
+      try {
+        const response = await fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: `
+              query QueryMe($userId: ID) {
+                queryMe(userId: $userId) {
+                  inventory {
+                    name
+                    description
+                    image
+                  }
+                }
+              }
+            `,
+            variables: {
+              userId: auth.getProfile().userId,
+            },
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const { data } = await response.json();
+        if (data && data.queryMe) {
+          setItems(data.queryMe.inventory);
+        }
+      } catch (err) {
+        setError('Failed to load inventory');
+        console.error(err);
+      }
+    }
+
+    getUserData();
+  }, []);
+
+  const handleRemoveItem = async (itemName) => {
+    try {
       const response = await fetch('/graphql', {
         method: 'POST',
         headers: {
@@ -14,8 +58,8 @@ const [items, setItems] = useState({})
         },
         body: JSON.stringify({
           query: `
-            query QueryMe($userId: ID) {
-              queryMe(userId: $userId) {
+            mutation DeleteItem($userId: ID!, $itemName: String!) {
+              deleteItem(userId: $userId, itemName: $itemName) {
                 inventory {
                   name
                   description
@@ -25,32 +69,54 @@ const [items, setItems] = useState({})
             }
           `,
           variables: {
-            userId: auth.getProfile().userId
+            userId: auth.getProfile().userId,
+            itemName,
           },
         }),
       });
-      const {data} = await response.json();
-  setItems(data.queryMe.inventory);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const { data } = await response.json();
+      if (data && data.deleteItem) {
+        setItems(data.deleteItem.inventory); 
+      }
+    } catch (err) {
+      setError('Failed to remove item');
+      console.error(err);
     }
-    getUserData()
-  },[]) 
- 
+  };
 
   return (
     isOpen && (
       <div className="inventory-modal">
         <div className="inventory-modal-content">
-          <button className="inventory-close" onClick={onClose}>&times;</button>
+          <button className="inventory-close" onClick={onClose}>
+            &times;
+          </button>
           <h2 className="inventory-title">Your Inventory</h2>
+          {error && <p className="error-message">{error}</p>} 
           <div className="inventory-items-container">
             <ul>
-
               {items.length > 0 ? (
-                items.map((item, index) => (
-                  <li key={index} className="inventory-item">
-                    {item.image && <img src={item.image} alt={item.name} className="inventory-item-image" />}
-                    <span>{item.name}: {item.description}</span>
-                    <button className="remove-item-button" onClick={() => onRemove(index)}>
+                items.map((item) => (
+                  <li key={item.name} className="inventory-item">
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="inventory-item-image"
+                      />
+                    )}
+                    <span>
+                      {item.name}: {item.description}
+                    </span>
+                    <button
+                      className="remove-item-button"
+                      onClick={() => handleRemoveItem(item.name)} 
+                    >
                       Drop
                     </button>
                   </li>

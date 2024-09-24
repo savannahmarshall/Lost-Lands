@@ -36,6 +36,32 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
         },
       }),
     });
+
+    const deleteItem = async (ObjectId) => {
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            mutation DeleteItem($ObjectID: ID!) {
+              deleteItem(ObjectID: $ObjectID) {
+                username
+              }
+            }
+          `,
+          variables: { ObjectId },
+        }),
+      });
+    
+      const result = await response.json();
+      if (result.errors) {
+        console.error('GraphQL Errors:', result.errors);
+        throw new Error('Failed to delete item');
+      }
+      return result.data.deleteItem;
+    };
   
     const result = await response.json();
     if (result.errors) {

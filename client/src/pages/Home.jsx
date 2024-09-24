@@ -59,9 +59,44 @@ const Home = () => {
     }
   };
 
-  const handleReset = () => {
-    setInventory([]); 
-    setCurrentRoom(1); 
+  const handleReset = async () => {
+    try {
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${AuthService.getToken()}`,
+        },
+        body: JSON.stringify({
+          query: `
+            mutation DeleteAllItems($userId: ID!) {
+              deleteAllItems(userId: $userId) {
+                _id
+                username
+                inventory {
+                  _id
+                  name
+                }
+              }
+            }
+          `,
+          variables: {
+            userId: auth.getProfile().userId,  
+          },
+        }),
+      });
+
+      const { data } = await response.json();
+
+      if (data && data.deleteAllItems) {
+        setInventory([]); 
+        setCurrentRoom(1); 
+      } else {
+        console.error("Failed to reset the adventure.");
+      }
+    } catch (error) {
+      console.error("Error during reset:", error);
+    }
   };
 
   const handleRemove = (index) => {

@@ -47,66 +47,72 @@ html, body {
   letter-spacing: 1px;
 }
 
-/* Login button styles */
+/* Button styles */
+button {
+  font-family: 'Oswald', sans-serif;
+}
+
 .login-button {
-  padding: 15px 30px; 
+  padding: 12px 24px;
   border: none;
-  border-radius: 6px; 
+  border-radius: 30px;
   background-color: #283199;
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
-  white-space: nowrap;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px #000;
   margin-left: 15px;
+  min-width: 100px;
 }
 
 .login-button:hover {
   background-color: #284e99;
 }
-/* Instructions Button Styles */
+
 .instructions-button {
-  padding: 15px 30px; 
-  border: none; 
-  border-radius: 6px; 
-  background-color: #4a773c; /* Dark green */
-  color: #ffffff; 
-  font-size: 1.2rem; 
-  font-weight: bold; 
-  cursor: pointer; 
-  transition: background-color 0.3s, transform 0.2s; 
-  white-space: nowrap;
-  margin-left: 15px; 
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background-color: #4a773c;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px #000;
+  margin-left: 15px;
+  min-width: 100px;
 }
 
 .instructions-button:hover {
-  background-color: #3c6530; /* Darker green */
+  background-color: #3c6530; 
 }
 
-
-
- /* Donations Button Styles*/
 .donations-button {
-  padding: 15px 30px; 
-  border: none; 
-  border-radius: 6px; 
-  background-color: #a03d1c; 
-  color: #ffffff; 
-  font-size: 1.2rem; 
-  font-weight: bold; 
-  cursor: pointer; 
-  transition: background-color 0.2s; 
-  white-space: nowrap;
-  margin-left: 15px; 
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background-color: #a03d1c;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px #000;
+  margin-left: 15px;
+  min-width: 100px;
 }
 
 .donations-button:hover {
-  background-color: #862311; /* Darker, richer red */
+  background-color: #862311; 
 }
 
-
-/* Adjust the content to leave space for the fixed navbar */
+/* Content Styles */
 .content {
   display: flex;
   justify-content: center;
@@ -132,6 +138,7 @@ html, body {
   padding: 20px;
   background-color: #000;
   z-index: 10;
+  flex-wrap: wrap; 
 }
 
 .footer-button {
@@ -143,9 +150,6 @@ html, body {
   color: #ffffff;
   border: 2px solid #4b8f29; 
   border-radius: 30px; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); 
-  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  font-family: 'Oswald', sans-serif; 
   letter-spacing: 0.5px; 
   text-shadow: 1px 1px 2px #000; 
 }
@@ -161,6 +165,7 @@ html, body {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4); 
   transform: translateY(1px); 
 }
+
 .reset-button {
   margin: 0 10px;
   padding: 12px 24px;
@@ -172,7 +177,6 @@ html, body {
   border-radius: 30px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  font-family: 'Oswald', sans-serif;
   letter-spacing: 0.5px;
   text-shadow: 1px 1px 2px #000;
 }
@@ -189,16 +193,43 @@ html, body {
   transform: translateY(1px);
 }
 
-
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-  .login-button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
+  .content {
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+  }
+
+  .content::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .content::-webkit-scrollbar-thumb {
+    background-color: #302b7c;
+    border-radius: 5px;
+  }
+
+  .content::-webkit-scrollbar-track {
+    background-color: #111111;
+    margin-left: 10px;
   }
 
   .navbar-title-container {
     max-width: 150px; 
+  }
+
+  .footer {
+    flex-direction: column; 
+    align-items: center; 
+    padding: 10px; 
+  }
+
+  .footer-button {
+    margin: 5px 0; 
+    width: 100%; 
+    max-width: 280px;
+    padding: 8px 16px; 
+    font-size: 1rem; 
   }
 }
 
@@ -207,12 +238,8 @@ html, body {
     max-width: 120px;
   }
 
-  .login-button {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-
-  .footer-button {
-    padding: 10px 20px;
+  .footer {
+    flex-direction: column; 
+    align-items: center; 
   }
 }

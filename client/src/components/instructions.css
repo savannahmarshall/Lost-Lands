@@ -1,64 +1,67 @@
-/* Modal Overlay */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(5, 26, 23, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    background-color: #0f0f0f; 
-    border-radius: 8px;
-    padding: 20px;
-    width: 90%;
-    max-width: 500px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-    border: 2px solid #4a773c;
-    font-family: 'Georgia', serif; 
-  }
-  
-  /* Close Button */
-  .modal-close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem; 
-    cursor: pointer;
-    color: #333; 
-  }
-  
-  .modal-close-button:hover {
-    color: #f00; 
-  }
-  
-  /* Modal Body */
-  .modal-body {
-    text-align: center; 
-  }
-  
-  .modal-body h2 {
-    font-size: 2rem;
-    margin-bottom: 10px; 
-    font-family: 'Georgia', serif; 
-    color: #3c4ae0; 
-    text-align: center; 
-    background-color: rgba(81, 81, 81, 0.2); 
-    border-radius: 8px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    padding: 10px; 
+/* Modal Content Style */
+.modal-content {
+  background-color: #0f0f0f;
+  border-radius: 12px;
+  padding: 20px; 
+  width: 90%; 
+  max-width: 600px; 
+  max-height: 80vh; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border: 2px solid #4a773c;
+  font-family: 'Georgia', serif;
+  color: #eee;
 }
-  
-  .modal-body p {
-    font-size: 1.4rem; 
-    color: #817e7e; 
+
+/* Title Styling */
+.modal-body h2 {
+  font-size: 2rem; 
+  margin-bottom: 15px; 
+  font-family: 'Georgia', serif;
+  color: #3c4ae0;
+  text-align: center;
+  background-color: rgba(81, 81, 81, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 8px; 
+}
+
+/* Modal Text Style*/
+.modal-text {
+  font-size: 1.2rem; 
+  color: #cae8c8;
+  line-height: 1.4; 
+  text-align: left;
+}
+
+/* Close Button */
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem; 
+  cursor: pointer;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.modal-close-button:hover {
+  color: #ff4040;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 15px; 
   }
+
+  .modal-body h2 {
+    font-size: 1.6rem; 
+  }
+
+  .modal-text {
+    font-size: 1rem; 
+  }
+}

@@ -3,7 +3,8 @@ import './Inventory.css';
 import { useEffect, useState } from 'react';
 import auth from '../utils/auth';
 
-const Inventory = ({ isOpen, onClose, items, onRemove }) => {
+const Inventory = ({ isOpen, onClose, onRemove }) => {
+const [items, setItems] = useState({})
   useEffect( ()=> {
     async function getUserData(){
       const response = await fetch('/graphql', {
@@ -28,8 +29,8 @@ const Inventory = ({ isOpen, onClose, items, onRemove }) => {
           },
         }),
       });
-      console.log(response)
-  
+      const {data} = await response.json();
+  setItems(data.queryMe.inventory);
     }
     getUserData()
   },[]) 

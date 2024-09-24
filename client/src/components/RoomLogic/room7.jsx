@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room7.css'; 
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room7 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -22,11 +23,9 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
         },
         body: JSON.stringify({
           query: `
-            mutation AddItem($name: String!, $description: String!, $image: String!) {
-              addItem(name: $name, description: $description, image: $image) {
-                name
-                description
-                image
+            mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+              addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+                username
               }
             }
           `,
@@ -34,6 +33,7 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
             name: 'Ice Climbing Gear', 
             description: 'A set of sturdy equipment designed to grip icy surfaces, essential for traversing the treacherous glacier. With this gear, you can navigate the frozen landscape and escape the frigid embrace of the ice.', 
             image: '/assets/ice-axe.png',  
+            ObjectID: auth.getProfile().userId 
           },
         }),
       });

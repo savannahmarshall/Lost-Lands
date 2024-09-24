@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room4.css'; 
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room4 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -22,11 +23,9 @@ const Room4 = ({ show, onClose, inventory, setInventory }) => {
         },
         body: JSON.stringify({
           query: `
-            mutation AddItem($name: String!, $description: String!, $image: String!) {
-              addItem(name: $name, description: $description, image: $image) {
-                name
-                description
-                image
+            mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+              addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+                username
               }
             }
           `,
@@ -34,6 +33,7 @@ const Room4 = ({ show, onClose, inventory, setInventory }) => {
             name: 'Ancient Coin', 
             description: 'A weathered coin that belonged to a traveler long ago, said to grant wishes when tossed into the water.',
             image: '/assets/coin-icon.png',  
+            ObjectID: auth.getProfile().userId
           },
         }),
       });

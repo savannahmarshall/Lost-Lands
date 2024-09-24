@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room3.css'; 
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room3 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -21,11 +22,9 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
       },
       body: JSON.stringify({
         query: `
-          mutation AddItem($name: String!, $description: String!, $image: String!) {
-            addItem(name: $name, description: $description, image: $image) {
-              name
-              description
-              image
+          mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+            addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+              username
             }
           }
         `,
@@ -33,6 +32,7 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
           name: 'Amethyst Crystal',
           description: 'A beautiful amethyst crystal that shimmers in the light, radiating a deep purple hue. Found in the depths of the cave, it is said to enhance intuition and bring peace.',
           image: '/assets/Amethyst-crystal.png',
+          ObjectID: auth.getProfile().userId
         },
       }),
     });

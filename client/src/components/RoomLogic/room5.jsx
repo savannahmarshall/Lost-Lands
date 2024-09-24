@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room5.css'; 
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room5 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -22,11 +23,9 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
         },
         body: JSON.stringify({
           query: `
-            mutation AddItem($name: String!, $description: String!, $image: String!) {
-              addItem(name: $name, description: $description, image: $image) {
-                name
-                description
-                image
+            mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+              addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+                username
               }
             }
           `,
@@ -34,6 +33,7 @@ const Room5 = ({ show, onClose, inventory, setInventory }) => {
             name: 'Teleportation Staff', 
             description: 'An ancient staff charged with magical energy, it shimmers with swirling runes. With this staff, one can traverse vast distances in the blink of an eye, uncovering hidden realms and escaping danger.', 
             image: '/assets/staff-icon.png',  
+            ObjectID: auth.getProfile().userId
           },
         }),
       });

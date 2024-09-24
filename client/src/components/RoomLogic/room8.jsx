@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room8.css'; 
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room8 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -14,31 +15,40 @@ const Room8 = ({ show, onClose, inventory, setInventory }) => {
   ];
 
   const addItem = async () => {
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
-              name
-              description
-              image
-            }
-          }
-        `,
-        variables: {
-          name: 'Celestial Lens', 
-          description: 'A beautifully crafted lens that enhances vision beyond the stars. It’s said to reveal secrets of the universe and can unlock hidden paths in the night sky.', 
-          image: '/assets/.png',  
+    try {
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }),
-    });
+        body: JSON.stringify({
+          query: `
+            mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+              addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+                username
+              }
+            }
+          `,
+          variables: {
+            name: 'Celestial Lens', 
+            description: 'A beautifully crafted lens that enhances vision beyond the stars. It’s said to reveal secrets of the universe and can unlock hidden paths in the night sky.', 
+            image: '/assets/celestial-lens.png',  
+            ObjectID: auth.getProfile().userId 
+          },
+        }),
+      });
 
-    const result = await response.json();
-    return result.data.addItem;
+      const result = await response.json();
+
+      if (!result.data || !result.data.addItem) {
+        throw new Error('Item could not be added. Check GraphQL response.');
+      }
+
+      return result.data.addItem;
+    } catch (error) {
+      console.error('Error adding item:', error);
+      throw error;
+    }
   };
 
   const handleOptionSelect = async (option) => {

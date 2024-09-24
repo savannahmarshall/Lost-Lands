@@ -69,7 +69,7 @@
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  margin: 15px 5px; /* Increased top and bottom margin */
+  margin: 15px 5px;
   transition: background-color 0.3s ease;
 }
 

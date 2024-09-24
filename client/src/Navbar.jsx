@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import LoginModal from './components/LoginModal';
-import InstructionsModal from './components/InstructionsModal'; 
+import InstructionsModal from './components/instructionsModal'; 
 import auth from './utils/auth';
 
 const Navbar = () => {
@@ -37,7 +37,7 @@ const Navbar = () => {
   };
 
   const handleDonationsClick = () => {
-    alert('Thank you for considering a donation!'); // Or redirect to your donation page
+    alert('Thank you for considering a donation!');
   };
 
   return (

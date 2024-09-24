@@ -27,7 +27,9 @@ const typeDefs = `
   type Mutation {
     createUser(username: String!, password: String!): AuthPayload
     login(username: String!, password: String!): AuthPayload
-    addItem(ObjectID: ID, name: String!, description: String!, image: String!): User  # Update to include image
+    addItem(ObjectID: ID, name: String!, description: String!, image: String!): User  
+    deleteItem(userId: ID!, itemName: String!): User 
+    deleteAllItems(userId: ID!): User 
   }
 `;
 

@@ -7,10 +7,10 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
   const [isCorrect, setIsCorrect] = useState(null);
 
   const options = [
-    { id: 1, text: 'Option 1', isCorrect: false },
-    { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true }, // correct answer goes here
-    { id: 4, text: 'Option 4', isCorrect: false },
+    { id: 1, text: 'Red Stone', isCorrect: false },
+    { id: 2, text: 'Blue Stone', isCorrect: false },
+    { id: 3, text: 'Yellow Stone', isCorrect: true }, // correct answer goes here
+    { id: 4, text: 'Green Stone', isCorrect: false },
   ];
 
   const addItem = async () => {
@@ -30,9 +30,9 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
           }
         `,
         variables: {
-          name: 'Room 1 Item',
-          description: 'This is an item from Room 1',
-          image: '/assets/fairy-wand.png',  // change icon here
+          name: 'Yellow Stone',
+          description: 'The yellow stone glows warmly, casting a gentle light through the shadows. Its smooth surface hums with energy, offering a sense of calm and guidance, as if it knows the way forward',
+          image: '/assets/yellow-stone.png',
         },
       }),
     });
@@ -82,7 +82,10 @@ Three deceive, one is true." Choose wrong, and the forest will claim you forever
           <div className="challengemodal-content">
             <button className="challengemodal-close-button" onClick={onClose}>X</button>
             <div className="challengemodal-body">
-              <p>Riddle goes here</p>
+              <p>"In the forest deep where shadows play,
+Four stones await to light your way.
+One shines bright in the dark of night,
+Which one will help you choose the right flight?"</p>
               <div>
                 {options.map(option => (
                   <button

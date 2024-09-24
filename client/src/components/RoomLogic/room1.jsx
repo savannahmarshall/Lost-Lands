@@ -9,7 +9,7 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
   const options = [
     { id: 1, text: 'Option 1', isCorrect: false },
     { id: 2, text: 'Option 2', isCorrect: false },
-    { id: 3, text: 'Option 3', isCorrect: true },
+    { id: 3, text: 'Option 3', isCorrect: true }, // correct answer goes here
     { id: 4, text: 'Option 4', isCorrect: false },
   ];
 
@@ -21,21 +21,27 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
       },
       body: JSON.stringify({
         query: `
-          mutation AddItem($name: String!, $description: String!) {
-            addItem(name: $name, description: $description) {
+          mutation AddItem($name: String!, $description: String!, $image: String!) {
+            addItem(name: $name, description: $description, image: $image) {
               name
               description
+              image
             }
           }
         `,
         variables: {
           name: 'Room 1 Item',
           description: 'This is an item from Room 1',
+          image: '/assets/fairy-wand.png',  // change icon here
         },
       }),
     });
 
     const result = await response.json();
+    if (result.errors) {
+      console.error('GraphQL Errors:', result.errors);
+      throw new Error('Failed to add item'); 
+    }
     return result.data.addItem;
   };
 
@@ -61,7 +67,7 @@ const Room1 = ({ show, onClose, inventory, setInventory }) => {
       <h1 className='room-title'>Lavenderlight Lair</h1>
       <div className="room1-image">
         {/* room 1 image will go here */}
-        <img src="https://static.vecteezy.com/system/resources/previews/022/712/809/large_2x/a-beautiful-fairytale-enchanted-forest-at-night-made-of-glittering-crystals-with-trees-and-colorful-vegetation-generate-ai-free-photo.jpg" />
+        <img src="https://static.vecteezy.com/system/resources/previews/022/712/809/large_2x/a-beautiful-fairytale-enchanted-forest-at-night-made-of-glittering-crystals-with-trees-and-colorful-vegetation-generate-ai-free-photo.jpg" alt="Room 1" />
       </div>
       <div className="room1-text">
       At the edge of Lavenderlight Lair, faint purple light flickers through twisted trees. 

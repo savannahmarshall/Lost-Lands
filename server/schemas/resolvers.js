@@ -13,6 +13,10 @@ const resolvers = {
     items: async () => {
       return Item.find({});
     },
+    queryMe: async (parent, {userId},context) => {
+      const user = await User.findOne({_id:userId})
+      return user
+    }
   },
   Mutation: {
     createUser: async (parent, { username, password }) => {
@@ -33,10 +37,9 @@ const resolvers = {
       const token = jwt.sign({ userId: user._id }, JWT_SECRET);
       return { token, user };
     },
-    addItem: async (parent, { name, description, image }) => {  
-      const newItem = new Item({ name, description, image });  
-      await newItem.save();
-      return newItem;
+    addItem: async (parent, { ObjectID, name, description, image }) => {  
+      const user = await User.findOneAndUpdate({_id:ObjectID},{$push:{inventory:{name,description,image}}},{runValidators:true,new:true})
+      return user;
     },
   },
 };

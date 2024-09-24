@@ -3,6 +3,7 @@ const typeDefs = `
     _id: ID!
     username: String!
     password: String!
+    inventory: [Item]
   }
 
   type Item {
@@ -20,12 +21,13 @@ const typeDefs = `
   type Query {
     users: [User]   # Query to fetch all users (if needed)
     items: [Item]   # Query to fetch all items
+    queryMe(userId:ID): User
   }
 
   type Mutation {
     createUser(username: String!, password: String!): AuthPayload
     login(username: String!, password: String!): AuthPayload
-    addItem(name: String!, description: String!, image: String!): Item  # Update to include image
+    addItem(ObjectID: ID, name: String!, description: String!, image: String!): User  # Update to include image
   }
 `;
 

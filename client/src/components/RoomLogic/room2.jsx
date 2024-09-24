@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './room2.css';
 import './challengeModals.css';
+import auth from '../../utils/auth';
 
 const Room2 = ({ show, onClose, inventory, setInventory }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -21,11 +22,9 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
       },
       body: JSON.stringify({
         query: `
-          mutation AddItem($name: String!, $description: String!, $image: String!) {
-            addItem(name: $name, description: $description, image: $image) {
-              name
-              description
-              image
+          mutation AddItem($ObjectID: ID, $name: String!, $description: String!, $image: String!) {
+            addItem(ObjectID: $ObjectID, name: $name, description: $description, image: $image) {
+              username
             }
           }
         `,
@@ -33,6 +32,7 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
           name: 'Glowing Mushroom',
           description: 'A rare mushroom with a vibrant glow-in-the-dark property, often cherished by adventurers for its ability to light the way in the darkest of places.',
           image: '/assets/glowing-mushroom.png', 
+          ObjectID: auth.getProfile().userId
         },
       }),
     });

@@ -76,7 +76,8 @@ const Room6 = ({ show, onClose, inventory, setInventory }) => {
         <img src="/assets/room-6.jpg" alt="Room 6" />
       </div>
       <div className="room-text6">
-        Text for Room 6 will go here later!
+      After solving the wizard’s riddle, you use the Teleportation Staff and arrive in the Enchanted Flora Grove. The grove is bathed in radiant white light, with glowing flowers covering silver-barked trees. In the center stands a gleaming pedestal with a small, ornate box. As you approach, a soft voice whispers from the flowers:
+      "Only those with pure hearts may unlock the box. Answer this riddle to claim the Grove's treasure."
       </div>
 
       {show && (

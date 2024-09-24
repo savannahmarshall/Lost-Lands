@@ -1,4 +1,6 @@
 /* Room 6 Styles */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
 .room-container6 {
     background-color: black;
     color: #ffffff; 
@@ -10,7 +12,7 @@
     margin-bottom: 50px;
     max-width: 1200px;
     margin: 0 auto; 
-    font-family: 'Georgia', serif; 
+    font-family: "Pixelify Sans", sans-serif; 
 }
 
 .room-header6 {

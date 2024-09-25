@@ -1,21 +1,16 @@
-# Savfolio
+# Lost Lands
 
 ## Description
 
-Lost-Lands is an immersive interactive game built with React for the frontend, a Node.js and Express.js server, and MongoDB utilizing the Mongoose ODM for the database. Players can create accounts, solve riddles to earn unique items, and explore an engaging storyline filled with diverse settings, all while managing and viewing their inventory.
+Lost-Lands is an immersive interactive game built with React for the frontend, a Node.js and Express.js server, and MongoDB utilizing the Mongoose ODM for the database. Players can create accounts, solve riddles to earn unique items, and explore an engaging storyline filled with diverse settings, all while managing and viewing their inventory, which is linked to their account.
   
 ## Table of Contents
-  
-- [Installation](#installation)
+
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
-
-## Installation
-
-To get started with Lost-Lands, clone the repository and install the necessary dependencies by running: npm install.
 
 ## Usage
 
@@ -35,23 +30,27 @@ To get started with Lost-Lands, clone the repository and install the necessary d
 
 
 
-**Please click [here]() to view the deployed application on Render.**
+**Please click [here](https://project-3-bf5p.onrender.com/) to view the deployed application on Render.**
 
 
-![screenshot 1]()
+![login modal](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/login.png)
 
-![screenshot 2]()
+![setting example](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/setting-example.png)
 
-![screenshot 3]()
+![inventory feature](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/inventory.png)
+
+![riddle example](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/riddle-example.png)
+
+![game instructions](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/game-instructions.png)
 
 
 
 ## Contributing
 If you are interesting in contributing to this project, please contact us directly. 
 
-[Savannah Marshall](https://github.com/savannahmarshall)
-[Andrea Fuentes](https://github.com/dreyuhh)
-[Joey Sandoval](https://github.com/wol42verine)
+* [Savannah Marshall](https://github.com/savannahmarshall)
+* [Andrea Fuentes](https://github.com/dreyuhh)
+* [Joey Sandoval](https://github.com/wol42verine)
 
 
 Icons by: 
@@ -64,8 +63,4 @@ This project is licensed under the [MIT License](https://opensource.org/license/
 There are no tests for this application.
 
 ## Questions
-If you have any questions about this project, feel free to reach out:
-
-**GitHub:** https://github.com/savannahmarshall  
-
-**Email:** savvymarshall@gmail.com
+If you have any questions about this project, feel free to reach out! Our GitHub accounts are linked above in the contributing section.

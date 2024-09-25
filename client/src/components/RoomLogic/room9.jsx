@@ -70,7 +70,7 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
 
   return (
     <div className="room-container9">
-      <h1 className='room-title'>Astral Haven</h1>
+      <h1 className='room-header9'>Astral Haven</h1>
       <div className="room-image9">
         <img src="/assets/room-9.jpg" alt="Room 9" />
       </div>

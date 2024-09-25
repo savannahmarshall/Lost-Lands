@@ -20,20 +20,20 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files (e.g., if you're serving an HTML file)
 app.use(express.static('public'));
 
-// POST request to save an item to the inventory collection
-app.post('/api/inventory', async (req, res) => {
-  try {
-    const newItem = new Item({
-      item: req.body.item,
-    });
+// // POST request to save an item to the inventory collection
+// app.post('/api/inventory', async (req, res) => {
+//   try {
+//     const newItem = new Item({
+//       item: req.body.item,
+//     });
 
-    await newItem.save();
-    res.status(200).json({ message: 'Item saved to inventory!' });
-  } catch (error) {
-    console.error('Error saving item:', error);
-    res.status(500).json({ message: 'Error saving item to inventory' });
-  }
-});
+//     await newItem.save();
+//     res.status(200).json({ message: 'Item saved to inventory!' });
+//   } catch (error) {
+//     console.error('Error saving item:', error);
+//     res.status(500).json({ message: 'Error saving item to inventory' });
+//   }
+// });
 
 // Apollo Server setup
 const server = new ApolloServer({

@@ -68,7 +68,8 @@ const Room3 = ({ show, onClose, inventory, setInventory }) => {
         <img src="/assets/room-3.jpg" alt="Room 3" />
       </div>
       <div className="room-text3">
-      As you step into the dark cave, the air feels cooler and the faint sound of dripping water echoes in the distance. The walls shimmer with a soft glow, revealing a series of ancient inscriptions etched into the stone. You move closer to read the riddle, illuminated by the light from your glowing mushroom. 
+      As you step into Amethyst Hollow, a cool mist surrounds you, and the faint sound of dripping water echoes in the distance. The walls shimmer with a soft glow, revealing ancient inscriptions etched into the stone.
+Amethyst crystals jut from the rock, casting gentle purple light across the cavern. You move closer, your glowing mushroom illuminating the swirling patterns on a grand stone tablet that beckons you to uncover its riddle.
       </div>
 
       {show && (

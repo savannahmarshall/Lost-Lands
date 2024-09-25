@@ -1,4 +1,6 @@
 /* Room 7 Styles */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
 .room-container7 {
     background-color: black;
     color: #00fbff; 
@@ -10,7 +12,7 @@
     margin-bottom: 50px;
     max-width: 1200px;
     margin: 0 auto; 
-    font-family: 'Georgia', serif; 
+    font-family: "Pixelify Sans", sans-serif; 
 }
 
 .room-header7 {
@@ -24,7 +26,7 @@
 }
 
 .room-image7 img {
-    width: 60%; 
+    width: 90%; 
     height: auto; 
 }
 

@@ -1,4 +1,7 @@
 /* Room 3 Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
 .room-container3 {
     background-color: black;
     color: #7709d6; 
@@ -11,7 +14,7 @@
     margin-bottom: 40px;
     max-width: 1200px;
     margin: 0 auto; 
-    font-family: 'Georgia', serif; 
+    font-family: "Pixelify Sans", sans-serif; 
 }
 
 .room-header3 {

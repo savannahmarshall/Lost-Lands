@@ -30,9 +30,9 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
             }
           `,
           variables: {
-            name: 'Ice Climbing Gear', 
-            description: 'A set of sturdy equipment designed to grip icy surfaces, essential for traversing the treacherous glacier. With this gear, you can navigate the frozen landscape and escape the frigid embrace of the ice.', 
-            image: '/assets/ice-axe.png',  
+            name: 'Ice Key', 
+            description: '', 
+            image: '/assets/ice-key.png',  
             ObjectID: auth.getProfile().userId 
           },
         }),
@@ -76,7 +76,9 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
         <img src="/assets/room-7.jpg" alt="Room 7" /> 
       </div>
       <div className="room-text7">
-        Text for Room 7 will go here later!
+      As you activate the Teleportation Staff, you are instantly swept into a realm of ice and snow. The warmth of the Enchanted Flora Grove fades as a frigid wind greets you. Towering glaciers rise around you, casting long shadows over the frozen landscape. In the center, a large block of ice entombs a glowing ice key—your way forward.
+      A faint, echoing voice calls through the wind:
+      "Break the ice with wisdom, not force. Solve the riddle, and the ice key will be yours."
       </div>
 
       {show && (

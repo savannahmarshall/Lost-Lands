@@ -95,7 +95,7 @@ const Room2 = ({ show, onClose, inventory, setInventory }) => {
         <img src="/assets/room-2.jpg" alt="Room 2" />
       </div>
       <div className="room-text2">
-        <p>After passing through the enchanting fairy village, you find yourself in Mystic Mushroom Valley. The air is thick with the earthy scent of damp soil and vibrant fungi. As you venture deeper, a foreboding dark cave looms ahead, its entrance shadowed and menacing. You can’t navigate through without a light source. Just then, you notice a note partially sticking out from beneath a heavy door, beckoning you closer.</p>
+        <p>After passing through Lavenderlight Lair, you find yourself in Mystic Mushroom Valley. The air is thick with the earthy scent of damp soil and vibrant fungi. As you venture deeper, a foreboding dark cave looms ahead, its entrance shadowed and menacing. You can’t navigate through without a light source. Just then, you notice a note partially sticking out from beneath a heavy door, beckoning you closer.</p>
       </div>
 
       {show && (

@@ -23,7 +23,7 @@
 
 .room-image8 {
     margin: 20px auto; 
-    max-width: 80%; 
+    max-width: 90%; 
 }
 
 .room-image8 img {
@@ -32,8 +32,8 @@
 }
 
 .room-text8 {
-    font-size: 1.5rem; 
-    line-height: 1.6;
+    font-size: 1.4rem; 
+    line-height: 1.4;
     padding: 20px; 
     border-radius: 8px; 
     width: 100%; 

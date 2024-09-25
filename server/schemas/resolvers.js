@@ -3,7 +3,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const JWT_SECRET = 'your_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {
   Query: {
@@ -13,9 +13,9 @@ const resolvers = {
     items: async () => {
       return Item.find({});
     },
-    queryMe: async (parent, {userId},context) => {
-      const user = await User.findOne({_id:userId})
-      return user
+    queryMe: async (parent, { userId }, context) => {
+      const user = await User.findOne({ _id: userId });
+      return user;
     }
   },
   Mutation: {
@@ -37,11 +37,33 @@ const resolvers = {
       const token = jwt.sign({ userId: user._id }, JWT_SECRET);
       return { token, user };
     },
-    addItem: async (parent, { ObjectID, name, description, image }) => {  
-      const user = await User.findOneAndUpdate({_id:ObjectID},{$push:{inventory:{name,description,image}}},{runValidators:true,new:true})
+    addItem: async (parent, { ObjectID, name, description, image }) => {
+      const user = await User.findOneAndUpdate(
+        { _id: ObjectID },
+        { $push: { inventory: { name, description, image } } },
+        { runValidators: true, new: true }
+      );
       return user;
     },
-  },
+    deleteItem: async (parent, { userId, itemName }) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new AuthenticationError('User not found');
+      }
+      user.inventory = user.inventory.filter(item => item.name !== itemName);
+      await user.save();
+      return user;
+    },
+    deleteAllItems: async (parent, { userId }) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new AuthenticationError('User not found');
+      }
+      user.inventory = [];  
+      await user.save();  
+      return user;
+    }
+  }
 };
 
 module.exports = resolvers;

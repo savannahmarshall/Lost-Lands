@@ -2,7 +2,7 @@
 
 ## Description
 
-Lost-Lands is an interactive game that uses React for the front end, a Node.js and Express.js server and utlizes MongoDB and the Mongoose ODM as the database. 
+Lost-Lands is an immersive interactive game built with React for the frontend, a Node.js and Express.js server, and MongoDB utilizing the Mongoose ODM for the database. Players can create accounts, solve riddles to earn unique items, and explore an engaging storyline filled with diverse settings, all while managing and viewing their inventory.
   
 ## Table of Contents
   
@@ -19,11 +19,20 @@ To get started with Lost-Lands, clone the repository and install the necessary d
 
 ## Usage
 
-**Create Account/Login:** Select the login button to either create an account or log in with existing credentials.
+**Create Account/Login:** Begin your adventure by selecting the **Login** button. You can either create a new account or log in with your existing credentials.
 
-**Answer Riddles:** Answer riddles with the correct answers to progress in the game. Each riddle has 4 options, and you will see a message that says "Item added to your inventory!" when you have made the correct selection.
+**Game Instructions:** Familiarize yourself with the game mechanics by selecting the **Guide** button, which provides a comprehensive set of instructions to enhance your gameplay experience.
 
-**View Inventory:** Click the treasure chest icon in the bottom right corner of the screen to see the items you have collected.
+**Donations:** Currently, there is a **Donation** button available. In the future, we plan to expand this section to allow users to submit feedback, make donations, and suggest improvements to the game.
+
+**Navigation:** Easily navigate through various settings using the **Keep Exploring** button to move forward and the **Turn Back** button to return to the previous setting.
+
+**Answer Riddles:** The objective of the game is to solve riddles presented in each setting. Click Unlock the Treasure to open a modal with a riddle. Select the correct answer to receive an item, which will be confirmed with a message stating, “Item added to your inventory” in green.
+
+**Inventory Feature:** Click the treasure chest icon located in the bottom right corner of the screen to view your collected items. Each item displays its name, icon, and description, which may provide clues or additional context for the game. You can remove items from your inventory by clicking the **Drop** button. Your inventory is linked to your account, so any items you collect will persist even if you log out and log back in.
+
+**Final Setting:** Upon reaching the final setting of the game, you will see a red **Reset Adventure** button. Pressing this button will return you to the first setting and clear your inventory, allowing you to start anew and enjoy the adventure once more.
+
 
 
 **Please click [here]() to view the deployed application on Render.**

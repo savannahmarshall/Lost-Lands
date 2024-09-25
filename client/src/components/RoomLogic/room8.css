@@ -1,7 +1,10 @@
 /* Room 8 Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
 .room-container8 {
     background-color: black;
-    color: #00fbff; 
+    color: #d952b3; 
     text-align: center; 
     padding: 40px;
     display: flex;  
@@ -10,7 +13,7 @@
     margin-bottom: 50px;
     max-width: 1200px;
     margin: 0 auto; 
-    font-family: 'Georgia', serif; 
+    font-family: "Pixelify Sans", sans-serif; 
 }
 
 .room-header8 {
@@ -24,7 +27,7 @@
 }
 
 .room-image8 img {
-    width: 60%; 
+    width: 70%; 
     height: auto; 
 }
 

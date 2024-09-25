@@ -31,7 +31,7 @@ const Room7 = ({ show, onClose, inventory, setInventory }) => {
           `,
           variables: {
             name: 'Ice Key', 
-            description: '', 
+            description: 'Crafted from pure, unmelting ice, this key glows with a soft blue light. Its surface is adorned with intricate frost patterns, and it feels cold to the touch. When held up to light, a crystalline core pulses within, radiating the chill of winter.', 
             image: '/assets/ice-key.png',  
             ObjectID: auth.getProfile().userId 
           },

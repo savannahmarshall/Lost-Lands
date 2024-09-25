@@ -70,11 +70,13 @@ const Room8 = ({ show, onClose, inventory, setInventory }) => {
 
   return (
     <div className="room-container8">
+      <h1 className="room-header8">Celestial Garden</h1>
       <div className="room-image8">
-        <img src="/path-to-room8-image.jpg" alt="Room 8" /> 
+        <img src="/assets/room-8.jpg" alt="Room 8" /> 
       </div>
       <div className="room-text8">
-        Text for Room 8 will go here later!
+      With the Ice Key, you unlock a shimmering portal and step into the Celestial Garden. The air is fragrant with exotic flowers glowing under a starlit sky. Bioluminescent plants cast an ethereal light, guiding you to a magnificent tree with silver leaves and twinkling orbs.
+      At the center, a pond reflects the constellations above. By the water’s edge stands a moonstone pedestal, upon which rests an ancient scroll. To continue your journey, you must solve the riddle inscribed on it.
       </div>
 
       {show && (

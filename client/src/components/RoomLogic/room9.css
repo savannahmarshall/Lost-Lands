@@ -1,7 +1,7 @@
 /* Room 9 Styles */
 .room-container9 {
     background-color: black;
-    color: #e471c3; 
+    color: #0f98ce; 
     text-align: center; 
     padding: 40px;
     display: flex;  
@@ -10,7 +10,7 @@
     margin-bottom: 50px;
     max-width: 1200px;
     margin: 0 auto; 
-    font-family: 'Georgia', serif; 
+    font-family: "Pixelify Sans", sans-serif; 
 }
 
 .room-header9 {

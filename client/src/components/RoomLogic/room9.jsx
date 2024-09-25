@@ -70,11 +70,14 @@ const Room9 = ({ show, onClose, inventory, setInventory }) => {
 
   return (
     <div className="room-container9">
+      <h1 className='room-title'>Astral Haven</h1>
       <div className="room-image9">
         <img src="/assets/room-9.jpg" alt="Room 9" />
       </div>
       <div className="room-text9">
-        You have solved the final riddle and found the map! This map shows you new horizons, meaning you can travel to many more places.
+      With your telescope pointed at the pond, you notice the stars aligning, forming a riddle across the night sky. 
+      Solving it promises a treasure, vital for continuing your journey. This newfound prize will guide you into new lands filled with 
+      greater challenges. Gripping the telescope, you feel the excitement of discovery, ready to face whatever comes next.
       </div>
 
       {show && (

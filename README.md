@@ -39,7 +39,7 @@ Lost Lands is an immersive interactive game built with React for the frontend, a
 
 ![inventory feature](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/inventory.png)
 
-![riddle example](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/riddle-example.png)
+![riddle example](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/riddle-example2.png)
 
 ![game instructions](https://github.com/savannahmarshall/Lost-Lands/blob/main/client/public/assets/game-instructions.png)
 

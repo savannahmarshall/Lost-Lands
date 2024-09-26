@@ -7,10 +7,12 @@ Lost-Lands is an immersive interactive game built with React for the frontend, a
 ## Table of Contents
 
 - [Usage](#usage)
-- [License](#license)
+- [Technologies](#technologies)
 - [Contributing](#contributing)
+- [License](#license)
 - [Tests](#tests)
 - [Questions](#questions)
+
 
 ## Usage
 
@@ -28,6 +30,24 @@ Lost-Lands is an immersive interactive game built with React for the frontend, a
 
 **Final Setting:** Upon reaching the final setting of the game, you will see a red **Reset Adventure** button. Pressing this button will return you to the first setting and clear your inventory, allowing you to play again and enjoy the adventure once more.
 
+
+## Technologies
+
+**React:** Used for building the front-end user interface, including interactive elements like buttons and modals.
+
+**MongoDB Atlas:** A cloud-based NoSQL database used to store user data, inventory, riddles, and other game-related data.
+
+**Mongoose ODM:** A tool for modeling and managing data in MongoDB, ensuring a structured schema for the application’s database.
+
+**GraphQL:** Utilized to query and mutate data efficiently between the front-end and the back-end.
+
+**Node.js:** The back-end runtime environment for handling server-side logic.
+
+**Express.js:** A web framework for Node.js, managing API routes and server functionality.
+
+**JWT (JSON Web Token):** Implemented for user authentication, allowing secure access to game features and inventory.
+
+**Render:** The cloud platform used to deploy the application, ensuring both the front-end and back-end are accessible online.
 
 
 **Please click [here](https://project-3-bf5p.onrender.com/) to view the deployed application on Render.**

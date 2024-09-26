@@ -22,11 +22,11 @@ Lost-Lands is an immersive interactive game built with React for the frontend, a
 
 **Navigation:** Easily navigate through various settings using the **Keep Exploring** button to move forward and the **Turn Back** button to return to the previous setting.
 
-**Answer Riddles:** The objective of the game is to solve riddles presented in each setting. Click Unlock the Treasure to open a modal with a riddle. Select the correct answer to receive an item, which will be confirmed with a message stating, “Item added to your inventory” in green.
+**Answer Riddles:** The objective of the game is to solve riddles presented in each setting. Click **Unlock the Treasure** to open a modal with a riddle. Select the correct answer to receive an item, which will be confirmed with a message stating, “Item added to your inventory” in green.
 
 **Inventory Feature:** Click the treasure chest icon located in the bottom right corner of the screen to view your collected items. Each item displays its name, icon, and description, which may provide clues or additional context for the game. You can remove items from your inventory by clicking the **Drop** button. Your inventory is linked to your account, so any items you collect will persist even if you log out and log back in.
 
-**Final Setting:** Upon reaching the final setting of the game, you will see a red **Reset Adventure** button. Pressing this button will return you to the first setting and clear your inventory, allowing you to start anew and enjoy the adventure once more.
+**Final Setting:** Upon reaching the final setting of the game, you will see a red **Reset Adventure** button. Pressing this button will return you to the first setting and clear your inventory, allowing you to play again and enjoy the adventure once more.
 
 
 

@@ -35,7 +35,7 @@ Lost-Lands is an immersive, interactive game designed to engage players in a cap
 
 **React:** Used for building the front-end user interface, including interactive elements like buttons and modals.
 
-**MongoDB Atlas:** A cloud-based NoSQL database used to store user data, inventory, riddles, and other game-related data.
+**MongoDB Atlas:** A cloud-based NoSQL database used to store user data and inventory.
 
 **Mongoose ODM:** A tool for modeling and managing data in MongoDB, ensuring a structured schema for the application’s database.
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-Lost-Lands is an immersive, interactive game designed to engage players in a captivating adventure. Built with React for the front-end, a Node.js and Express.js server, and MongoDB powered by the Mongoose ODM, the game offers players the ability to create personalized accounts, solve riddles, and collect unique items. As they progress through the richly woven storyline, players can explore a variety of diverse settings, each with its own set of puzzles and secrets. Along the way, they can manage and view their inventory, which is seamlessly linked to their account, allowing for a personalized and continuous gaming experience.
+Lost-Lands is an immersive, interactive game designed to engage players in a captivating adventure. Built with React for the front-end, a Node.js and Express.js server, and MongoDB powered by the Mongoose ODM, the game offers players the ability to create personalized accounts, solve riddles, and collect unique items. As they progress through the storyline, players can explore a variety of diverse settings, each with it's own unique theme. Along the way, they can manage and view their inventory, which is seamlessly linked to their account, allowing for a personalized and continuous gaming experience.
   
 ## Table of Contents
 
